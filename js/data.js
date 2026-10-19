@@ -44,56 +44,32 @@ const SITE = {
 --------------------------------- */
 const WORKS = [
   {
-    id: "gyro",
-    title: "Gyro",
-    subtitle: "目隠しスイカ割り（スマホ2台で遊ぶブラウザゲーム）",
-    type: "",                       // "team" か "solo" を入れてください
-    status: "ブラウザでプレイ可能",
+    id: "space-survival",
+    title: "SpaceSurvival",
+    subtitle: "［ジャンル］",
+    type: "team",
+    status: "学校の後期ゲームプロジェクト",
     thumbnail: "",
     screenshots: [],
     youtube: "",
-    engine: "HTML / JavaScript（ブラウザ）",
+    engine: "Unity / C#",
     teamSize: "［人数］",
     period: "［制作期間］",
-    role: "［担当箇所］",
-    summary: "スマホのジャイロセンサーで「振る」操作をする、スマホ2台で遊ぶ目隠しスイカ割りゲーム。",
+    role: "じゃんけんパートのプログラム（リズムシステム・結果演出など）",
+    summary: "［一行紹介］",
     description: [
-      "プレイヤー役と観測者役の2台のスマホを合言葉（コード）でつなぎ、観測者が画面を見ながらプレイヤーを誘導してスイカを割ります。",
-      "スイカ割りのほかに「スイカ耐久」や、カメラを使う「ゆうれい探し」モード、1台で遊べるソロモードも用意しています。",
-      "［ゲームのこだわりや面白さを追記］"
+      "［ゲームの概要：どんな遊びか、プレイヤーの目的は何か］",
+      "［じゃんけんパートがゲームの中でどんな役割か］"
     ],
     myCode: [
-      "［担当した機能　例：ジャイロセンサーによるスイング判定］",
-      "［例：WebRTCによる2台間の通信］",
-      "［例：カメラ映像を使ったゆうれい探しモード］"
+      "じゃんけんの進行管理（JankenManager）と、BPMに合わせて進むリズムじゃんけんシステム",
+      "テンポの加速への対応、出す手の順番（固定・ランダム）の制御",
+      "じゃんけん結果の演出、看板のアニメーション",
+      "スコア処理、プレイヤー・エイリアンのアニメーション、解答台のライト点滅",
+      "BGMのフェード、スタート時のポップアップ、ポーズなど"
     ],
-    ideas: [{ title: "［工夫した点の見出し］", body: "［何を、なぜ、どう工夫したか］" }],
-    problems: [
-      { problem: "［発生した問題　例：端末によってセンサーの許可やジャイロが使えない］", solution: "［どう解決したか　例：タッチ・ボタン操作への切り替えを用意した］" }
-    ],
-    links: [
-      { label: "GitHub", url: "https://github.com/riusiu/Gyro" }
-      // 遊べるURLができたら → { label: "プレイする", url: "https://..." },
-    ]
-  },
-  {
-    id: "golf-remake",
-    title: "GolfRemake",
-    subtitle: "［ジャンル］",
-    type: "solo",
-    status: "",
-    thumbnail: "",
-    screenshots: [],
-    youtube: "",
-    engine: "Unity / C#（lilToon使用）",
-    teamSize: "1人",
-    period: "［制作期間］",
-    role: "［担当箇所　例：プログラム全般（プレイヤー操作など）］",
-    summary: "［一行紹介］",
-    description: ["［ゲームの概要：どんな遊びか、プレイヤーの目的は何か］"],
-    myCode: ["プレイヤーの操作全般", "［ほかに担当した機能］"],
-    ideas: [{ title: "［工夫した点の見出し］", body: "［何を、なぜ、どう工夫したか］" }],
-    problems: [{ problem: "［発生した問題］", solution: "［どう原因を調べ、どう解決したか］" }],
+    ideas: [{ title: "［工夫した点の見出し　例：リズムとじゃんけん進行の同期］", body: "［何を、なぜ、どう工夫したか］" }],
+    problems: [{ problem: "［発生した問題　例：進行管理をコルーチン以外の方法にしたときに起きた問題］", solution: "［どう原因を調べ、どう解決したか］" }],
     links: []                       // 非公開リポジトリなのでリンクなし
   },
   {
@@ -119,6 +95,26 @@ const WORKS = [
     ]
   },
   {
+    id: "golf-remake",
+    title: "GolfRemake",
+    subtitle: "［ジャンル］",
+    type: "solo",
+    status: "",
+    thumbnail: "",
+    screenshots: [],
+    youtube: "",
+    engine: "Unity / C#（lilToon使用）",
+    teamSize: "1人",
+    period: "［制作期間］",
+    role: "［担当箇所　例：プログラム全般（プレイヤー操作など）］",
+    summary: "［一行紹介］",
+    description: ["［ゲームの概要：どんな遊びか、プレイヤーの目的は何か］"],
+    myCode: ["プレイヤーの操作全般", "［ほかに担当した機能］"],
+    ideas: [{ title: "［工夫した点の見出し］", body: "［何を、なぜ、どう工夫したか］" }],
+    problems: [{ problem: "［発生した問題］", solution: "［どう原因を調べ、どう解決したか］" }],
+    links: []                       // 非公開リポジトリなのでリンクなし
+  },
+  {
     id: "gakupenbiyori",
     title: "Gakupenbiyori",
     subtitle: "［ジャンル］",
@@ -139,24 +135,37 @@ const WORKS = [
     links: []                       // 非公開リポジトリなのでリンクなし
   },
   {
-    id: "space-survival",
-    title: "SpaceSurvival",
-    subtitle: "［ジャンル］",
-    type: "",
-    status: "",
+    id: "gyro",
+    title: "Gyro",
+    subtitle: "目隠しスイカ割り（スマホ2台で遊ぶブラウザゲーム）",
+    type: "",                       // "team" か "solo" を入れてください
+    status: "ブラウザでプレイ可能",
     thumbnail: "",
     screenshots: [],
     youtube: "",
-    engine: "［開発環境］",
+    engine: "HTML / JavaScript（ブラウザ）",
     teamSize: "［人数］",
-    period: "［制作期間］",
+    period: "2日",
     role: "［担当箇所］",
-    summary: "［一行紹介］",
-    description: ["［ゲームの概要］"],
-    myCode: ["［担当した機能］"],
+    summary: "スマホのジャイロセンサーで「振る」操作をする、スマホ2台で遊ぶ目隠しスイカ割りゲーム。",
+    description: [
+      "プレイヤー役と観測者役の2台のスマホを合言葉（コード）でつなぎ、観測者が画面を見ながらプレイヤーを誘導してスイカを割ります。",
+      "スイカ割りのほかに「スイカ耐久」や、カメラを使う「ゆうれい探し」モード、1台で遊べるソロモードも用意しています。",
+      "［ゲームのこだわりや面白さを追記］"
+    ],
+    myCode: [
+      "［担当した機能　例：ジャイロセンサーによるスイング判定］",
+      "［例：WebRTCによる2台間の通信］",
+      "［例：カメラ映像を使ったゆうれい探しモード］"
+    ],
     ideas: [{ title: "［工夫した点の見出し］", body: "［何を、なぜ、どう工夫したか］" }],
-    problems: [{ problem: "［発生した問題］", solution: "［どう原因を調べ、どう解決したか］" }],
-    links: []
+    problems: [
+      { problem: "［発生した問題　例：端末によってセンサーの許可やジャイロが使えない］", solution: "［どう解決したか　例：タッチ・ボタン操作への切り替えを用意した］" }
+    ],
+    links: [
+      { label: "GitHub", url: "https://github.com/riusiu/Gyro" }
+      // 遊べるURLができたら → { label: "プレイする", url: "https://..." },
+    ]
   }
 ];
 
@@ -206,10 +215,10 @@ const AI_RESEARCH = [
    works：そのスキルを使った作品の id を並べると、スキル表から作品へリンクされます。
 --------------------------------- */
 const SKILLS = [
-  { name: "Unity",           years: "［年数］", level: 0, note: "", works: ["golf-remake", "golfer-shot", "gakupenbiyori"] },
-  { name: "C#",              years: "［年数］", level: 0, note: "", works: ["golf-remake", "golfer-shot", "gakupenbiyori"] },
+  { name: "Unity",           years: "［年数］", level: 0, note: "", works: ["space-survival", "golf-remake", "golfer-shot", "gakupenbiyori"] },
+  { name: "C#",              years: "［年数］", level: 0, note: "", works: ["space-survival", "golf-remake", "golfer-shot", "gakupenbiyori"] },
   { name: "HTML / JavaScript", years: "［年数］", level: 0, note: "WebRTC・端末センサーを使用", works: ["gyro"] },
-  { name: "Git / GitHub",    years: "［年数］", level: 0, note: "チーム開発でブランチ運用", works: ["golfer-shot", "gakupenbiyori"] },
+  { name: "Git / GitHub",    years: "［年数］", level: 0, note: "チーム開発でブランチ運用", works: ["space-survival", "golfer-shot", "gakupenbiyori"] },
   { name: "JetBrains Rider", years: "［年数］", level: 0, note: "", works: [] },
   { name: "Unreal Engine",   years: "［年数］", level: 0, note: "授業で学習中", works: [] }
 ];
