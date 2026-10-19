@@ -141,26 +141,6 @@ const WORKS = [
     links: []                       // 非公開リポジトリなのでリンクなし
   },
   {
-    id: "braking-viking",
-    title: "BrakingViking",
-    subtitle: "［ジャンル］",
-    type: "team",
-    status: "",
-    thumbnail: "",
-    screenshots: [],
-    youtube: "",
-    engine: "Unity",
-    teamSize: "［人数］",
-    period: "［制作期間］",
-    role: "［担当箇所］",
-    summary: "［一行紹介］",
-    description: ["［ゲームの概要：どんな遊びか、プレイヤーの目的は何か］"],
-    myCode: ["［担当した機能］"],
-    ideas: [{ title: "［工夫した点の見出し］", body: "［何を、なぜ、どう工夫したか］" }],
-    problems: [{ problem: "［発生した問題］", solution: "［どう原因を調べ、どう解決したか］" }],
-    links: []
-  },
-  {
     id: "gakupenbiyori",
     title: "Gakupenbiyori",
     subtitle: "［ジャンル］",
@@ -172,7 +152,7 @@ const WORKS = [
     engine: "Unity / C#（LitMotion使用）",
     teamSize: "［人数］",
     period: "［制作期間］",
-    role: "［担当箇所］",
+    role: "企画（ゲームのアイデア）／［プログラムで担当した箇所］",
     summary: "［一行紹介］",
     description: ["［ゲームの概要：どんな遊びか、プレイヤーの目的は何か］"],
     myCode: ["［担当した機能　例：タイトル画面・リザルト画面］"],
@@ -197,6 +177,7 @@ const AI_RESEARCH = [
     goal: "［目的　例：AIを使うと、どこまで短期間で遊べるゲームを形にできるか試す］",
     tools: ["HTML / JavaScript", "WebRTC", "スマホのジャイロセンサー", "［使用したAI］"],
     approach: [
+      "ジャイロセンサーを使うなど、遊びのアイデアは自分で考えた",
       "スマホ2台を合言葉（コード）でつなぎ、プレイヤー役と観測者役で遊ぶ仕組みにした",
       "ジャイロセンサーで「振る」操作、カメラを使う「ゆうれい探し」モード、1台で遊べるソロモードを用意",
       "［AIにどこまで任せ、どこを自分で判断・修正したか］"
@@ -239,6 +220,30 @@ const AI_RESEARCH = [
     results: ["［結果］"],
     learnings: ["［学んだこと］"],
     links: []
+  }
+];
+
+/* ---------- 企画・プランニングでの関わり ----------
+   トップページに表示されます。
+   workId に作品の id を入れると作品ページへ、link にURLを入れるとそのページへリンクします。
+--------------------------------- */
+const PLANNING = [
+  {
+    title: "Gakupenbiyori",
+    workId: "gakupenbiyori",
+    role: "企画",
+    body: "ゲームの企画（アイデア）を考えた。［どんな発想から生まれたか、企画で大事にしたことを追記］"
+  },
+  {
+    title: "Gyro（目隠しスイカ割り）",
+    link: "ai.html#gyro",
+    role: "アイデア出し",
+    body: "ジャイロセンサーを使うなど、遊びのアイデアを考えた。［アイデアのきっかけを追記］"
+  },
+  {
+    title: "BrakingViking",
+    role: "企画修正・バランス調整",
+    body: "企画の修正と、ゲームバランスの調整をメンバーのPCで直接行った。［どんな調整をして、どう良くなったかを追記］"
   }
 ];
 

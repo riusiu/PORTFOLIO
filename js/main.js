@@ -114,6 +114,15 @@
     set("philosophy", SITE.philosophy.map(function (p) {
       return '<li class="philo-item"><h3>' + esc(p.title) + "</h3><p>" + esc(p.body) + "</p></li>";
     }).join(""));
+    if (typeof PLANNING !== "undefined") {
+      set("planning", PLANNING.map(function (p) {
+        var href = p.workId && findWork(p.workId) ? workUrl(findWork(p.workId)) : (p.link || "");
+        var title = href ? '<a href="' + esc(href) + '">' + esc(p.title) + "</a>" : esc(p.title);
+        return '<li class="plan-item"><div class="plan-head"><span class="plan-title">' + title + "</span>" +
+          '<span class="tag tag-status plan-role">' + esc(p.role) + "</span></div>" +
+          "<p>" + esc(p.body) + "</p></li>";
+      }).join(""));
+    }
     set("featured", WORKS.slice(0, 3).map(card).join(""));
   }
 
