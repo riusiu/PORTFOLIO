@@ -14,6 +14,61 @@
   function findWork(id) { return WORKS.filter(function (w) { return w.id === id; })[0]; }
   function cur(cond) { return cond ? ' aria-current="page"' : ""; }
 
+  /* ---------- 作品ページの目次 ---------- */
+  function buildToc(root) {
+    var secs = root.querySelectorAll(".detail-section");
+    if (secs.length < 3) return;
+    var links = [];
+    Array.prototype.forEach.call(secs, function (s, i) {
+      var h = s.querySelector("h2");
+      if (!h) return;
+      s.id = "sec-" + (i + 1);
+      links.push('<li><a href="#' + s.id + '">' + esc(h.textContent) + "</a></li>");
+    });
+    var nav = document.createElement("nav");
+    nav.className = "detail-toc";
+    nav.setAttribute("aria-label", "このページの目次");
+    nav.innerHTML = "<ul>" + links.join("") + "</ul>";
+    secs[0].parentNode.insertBefore(nav, secs[0]);
+    if (!("IntersectionObserver" in window)) return;
+    var ul = nav.firstChild;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        Array.prototype.forEach.call(nav.querySelectorAll("a"), function (a) {
+          var on = a.getAttribute("href") === "#" + e.target.id;
+          a.classList.toggle("is-current", on);
+          if (on) ul.scrollLeft = a.parentNode.offsetLeft - 16;
+        });
+      });
+    }, { rootMargin: "-35% 0px -60% 0px" });
+    Array.prototype.forEach.call(secs, function (s) { io.observe(s); });
+  }
+
+  /* ---------- スクロールでふわっと表示 ---------- */
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var revealIO = ("IntersectionObserver" in window && !reduceMotion) ? new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      el.classList.add("is-visible");
+      revealIO.unobserve(el);
+      setTimeout(function () { el.style.transitionDelay = ""; }, 900);
+    });
+  }, { rootMargin: "0px 0px -8% 0px" }) : null;
+  function reveal() {
+    if (!revealIO) return;
+    document.documentElement.classList.add("js-reveal");
+    var els = document.querySelectorAll(".work-card, .philo-item, .plan-item, .detail-section, .ai-entry, .version, .snippet, .contact-list li");
+    var n = 0;
+    Array.prototype.forEach.call(els, function (el) {
+      if (el.dataset.revealed) return;
+      el.dataset.revealed = "1";
+      el.style.transitionDelay = (n++ % 4) * 70 + "ms";
+      revealIO.observe(el);
+    });
+  }
+
   /* ---------- 共通：ヘッダー ---------- */
   function renderHeader() {
     var el = document.getElementById("site-header");
@@ -96,6 +151,14 @@
     set("hero-role", esc(SITE.role) + "志望");
     set("hero-catch", esc(SITE.catchphrase));
     set("hero-school", esc(SITE.school) + "　" + esc(SITE.department));
+    var heroSkills = (typeof SKILLS !== "undefined" ? SKILLS : []).slice(0, 5).map(function (s) {
+      return "<li>" + esc(s.name) + "</li>";
+    }).join("");
+    var aiCount = typeof AI_RESEARCH !== "undefined" ? AI_RESEARCH.length : 0;
+    set("hero-meta",
+      (heroSkills ? '<ul class="hero-skills" aria-label="主な使用技術">' + heroSkills + "</ul>" : "") +
+      '<dl class="hero-stats"><div><dt>WORKS</dt><dd>' + WORKS.length + "</dd></div>" +
+      (aiCount ? "<div><dt>AI RESEARCH</dt><dd>" + aiCount + "</dd></div>" : "") + "</dl>");
 
     var src = (SITE.nameEn && SITE.nameEn !== "PORTFOLIO" ? SITE.nameEn : SITE.name).replace(/［[^］]*］/g, "").trim();
     var initial = src.charAt(0);
@@ -137,6 +200,7 @@
         ? list.map(card).join("")
         : '<p class="empty">この条件の作品はまだありません。data.js に作品を追加すると表示されます。</p>';
       count.textContent = list.length + "作品";
+      reveal();
     }
     Array.prototype.forEach.call(buttons, function (b) {
       b.addEventListener("click", function () {
@@ -254,6 +318,7 @@
           (next ? '<a class="pager-next" href="' + workUrl(next) + '"><small>次の作品</small>' + esc(next.title) + "</a>" : "<span></span>") +
         "</nav>" +
       "</div>";
+    buildToc(main);
   }
 
   /* ---------- SKILLS / CONTACT ---------- */
@@ -332,4 +397,5 @@
   if (page === "works") renderWorks();
   if (page === "work") renderWork();
   if (page === "skills") renderSkills();
+  reveal();
 })();
