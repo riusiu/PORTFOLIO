@@ -358,6 +358,15 @@ p { margin: 0 0 1em; }
 .plan-item p { margin: 0; }
 @media (max-width: 640px) { .plan-item { grid-template-columns: 1fr; } }
 
+/* ===== コード抜粋 ===== */
+.snippet + .snippet { margin-top: 32px; }
+.snippet h3 { font-size: 1.02rem; color: var(--navy); margin-bottom: 6px; }
+.snippet-note { color: var(--muted); font-size: .92rem; max-width: 44em; margin-bottom: 12px; }
+.code-block { border: 1px solid var(--navy); border-radius: 8px; overflow: hidden; max-width: 56em; }
+.code-file { background: var(--navy); color: #C4D3EE; font-size: .8rem; padding: 6px 16px; }
+.code-block pre { margin: 0; padding: 16px 18px; background: #0F1C38; color: #E6EDF7; overflow-x: auto; font-size: .85rem; line-height: 1.65; }
+.code-block code { font-family: "Cascadia Code", Consolas, "Courier New", monospace; white-space: pre; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
