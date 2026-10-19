@@ -367,6 +367,71 @@ p { margin: 0 0 1em; }
 .code-block pre { margin: 0; padding: 16px 18px; background: #0F1C38; color: #E6EDF7; overflow-x: auto; font-size: .85rem; line-height: 1.65; }
 .code-block code { font-family: "Cascadia Code", Consolas, "Courier New", monospace; white-space: pre; }
 
+/* ===== デザイン強化 ===== */
+
+/* トップ */
+.hero::before {
+  content: ""; position: absolute; right: -12%; top: -40%; width: 62%; height: 180%;
+  background: radial-gradient(closest-side, rgba(47,111,235,.38), transparent);
+  pointer-events: none;
+}
+.hero-inner { position: relative; }
+.hero-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 32px; margin: -12px 0 32px; }
+.hero-skills { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.hero-skills li {
+  font-size: .8rem; padding: 3px 12px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.35); color: #E6EDF7; background: rgba(255,255,255,.04);
+}
+.hero-stats { display: flex; gap: 28px; margin: 0; }
+.hero-stats div { display: flex; align-items: baseline; gap: 8px; }
+.hero-stats dt { font-family: var(--font-en); font-size: .76rem; letter-spacing: .08em; color: #9DBCFA; }
+.hero-stats dd { margin: 0; font-family: var(--font-en); font-weight: 600; font-size: 1.5rem; color: #fff; line-height: 1; }
+
+/* 作品カード */
+.work-card { transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+.work-card-media { overflow: hidden; }
+.work-card-img { transition: transform .4s ease; }
+.work-card:hover .work-card-img { transform: scale(1.05); }
+.work-card-more::after { content: "→"; display: inline-block; margin-left: 6px; transition: transform .22s ease; }
+.work-card:hover .work-card-more::after { transform: translateX(4px); }
+
+/* 作品ページの目次 */
+.detail-toc {
+  position: sticky; top: var(--header-h); z-index: 20;
+  margin: 8px -24px 0; padding: 0 24px;
+  background: rgba(255,255,255,.96); backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+.detail-toc ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+.detail-toc ul::-webkit-scrollbar { display: none; }
+.detail-toc a {
+  display: block; white-space: nowrap; padding: 12px 12px 10px; font-size: .86rem;
+  color: var(--muted); text-decoration: none; border-bottom: 2px solid transparent;
+}
+.detail-toc a:hover { color: var(--navy); }
+.detail-toc a.is-current { color: var(--navy); font-weight: 700; border-bottom-color: var(--blue); }
+.detail-section { scroll-margin-top: calc(var(--header-h) + 56px); }
+.detail-toc + .detail-section { border-top: 0; }
+
+/* スクロールでふわっと表示 */
+.js-reveal .work-card, .js-reveal .philo-item, .js-reveal .plan-item, .js-reveal .detail-section,
+.js-reveal .ai-entry, .js-reveal .version, .js-reveal .snippet, .js-reveal .contact-list li {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .55s ease, transform .55s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.js-reveal .is-visible { opacity: 1; transform: none; }
+
+/* カードのホバー（演出の後に効くよう最後に置く） */
+.work-card:hover, .work-card:focus-within,
+.js-reveal .work-card.is-visible:hover, .js-reveal .work-card.is-visible:focus-within {
+  transform: translateY(-4px); box-shadow: 0 14px 30px rgba(20,37,74,.14); border-color: var(--blue);
+}
+
+@media (max-width: 640px) {
+  .detail-toc { margin-left: -18px; margin-right: -18px; padding: 0 18px; }
+  .hero-meta { margin-top: -8px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
