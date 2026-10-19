@@ -346,6 +346,18 @@ p { margin: 0 0 1em; }
 .version .code-list { margin-top: 14px; }
 @media (max-width: 640px) { .versions { grid-template-columns: 1fr; } }
 
+/* ===== 企画・プランニング ===== */
+.plan-lead { margin: -12px 0 24px; }
+.plan-list { list-style: none; margin: 0; padding: 0; max-width: 52em; }
+.plan-item { display: grid; grid-template-columns: 13em 1fr; gap: 8px 28px; padding: 20px 0; border-top: 1px solid var(--line); }
+.plan-item:last-child { border-bottom: 1px solid var(--line); }
+.plan-title { display: block; font-weight: 700; color: var(--navy); font-size: 1.02rem; }
+.plan-title a { text-decoration: none; }
+.plan-title a:hover { text-decoration: underline; }
+.plan-role { margin-top: 6px; }
+.plan-item p { margin: 0; }
+@media (max-width: 640px) { .plan-item { grid-template-columns: 1fr; } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
