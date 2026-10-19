@@ -181,6 +181,17 @@
         }).join("") + "</ul>"
       : "";
 
+    var snippets = "";
+    if ((w.code || []).length) {
+      snippets = '<section class="detail-section"><h2>コード抜粋</h2>' + w.code.map(function (c) {
+        return '<div class="snippet">' +
+          (c.title ? "<h3>" + esc(c.title) + "</h3>" : "") +
+          (c.note ? '<p class="snippet-note">' + esc(c.note) + "</p>" : "") +
+          '<div class="code-block">' + (c.file ? '<div class="code-file">' + esc(c.file) + "</div>" : "") +
+          "<pre><code>" + esc(c.body) + "</code></pre></div></div>";
+      }).join("") + "</section>";
+    }
+
     var versions = "";
     if ((w.versions || []).length) {
       versions = '<section class="detail-section"><h2>' + esc(w.versionsTitle || "初代とリメイク") + '</h2><div class="versions">' +
@@ -221,6 +232,8 @@
 
         '<section class="detail-section"><h2>担当したプログラム</h2><ul class="code-list">' +
           (w.myCode || []).map(function (c) { return "<li>" + esc(c) + "</li>"; }).join("") + "</ul></section>" +
+
+        snippets +
 
         '<section class="detail-section"><h2>実装で工夫した点</h2><div class="idea-list">' +
           (w.ideas || []).map(function (i) {

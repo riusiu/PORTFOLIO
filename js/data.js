@@ -41,6 +41,7 @@ const SITE = {
    type は "team"（チーム制作）か "solo"（個人制作）。
    画像は images/ フォルダに入れて "images/ファイル名.png" と書きます。
    youtube は動画URLの v= の後ろのID。空なら動画欄は出ません。
+   code はコード抜粋（body はバッククォート ` で囲むと改行ごと書けます）。不要なら code: [] に。
 --------------------------------- */
 const WORKS = [
   {
@@ -68,8 +69,66 @@ const WORKS = [
       "スコア処理、プレイヤー・エイリアンのアニメーション、解答台のライト点滅",
       "BGMのフェード、スタート時のポップアップ、ポーズなど"
     ],
-    ideas: [{ title: "［工夫した点の見出し　例：リズムとじゃんけん進行の同期］", body: "［何を、なぜ、どう工夫したか］" }],
-    problems: [{ problem: "［発生した問題　例：進行管理をコルーチン以外の方法にしたときに起きた問題］", solution: "［どう原因を調べ、どう解決したか］" }],
+    code: [
+      {
+        title: "コルーチンでの出題処理（現在の方式）",
+        note: "「1拍分待つ」を挟みながら、合図の音・手の表示・順番の決定を順番に進めています。",
+        file: "JankenManager.cs（一部抜粋）",
+        body: `/// <summary>
+/// ビートインターバルでディレイをかけてテンポよく指示出し
+/// </summary>
+private IEnumerator issueSequenceByBeat()
+{
+    Instance.PlaySe(SeAudioClipNames.Pi);
+    yield return new WaitForSeconds((float)_beatInterval * 1);
+    Instance.PlaySe(SeAudioClipNames.Pi);
+    yield return new WaitForSeconds((float)_beatInterval * 1);
+    RandomHand();
+    Instance.PlaySe(SeAudioClipNames.Piron);
+    yield return new WaitForSeconds((float)_beatInterval * 1);
+    Instance.PlaySe(SeAudioClipNames.Piron);
+    TurnOrder();
+    JKReset();
+}`
+      },
+      {
+        title: "自作の予約実行スケジューラ（以前の方式）",
+        note: "BGMの再生中はBGMの時間、止まっている間はオーディオ用の時計を基準にして、処理を「何拍後」で予約していました。",
+        file: "JankenManager.cs（一部抜粋）",
+        body: `// 今この瞬間の「基準時間」を返す
+// BGM動作中は BgmVirtualTime、BGM停止中は DSP時間を使う
+private double Now()
+{
+    if (_useMusicClock)
+    {
+        return _JKSoundManager.BgmVirtualTime;
+    }
+    return AudioSettings.dspTime - _dspBaseTime;
+}
+
+// 今からbeat拍後にactionを予約
+private void ScheduleBeat(int beat, Action action)
+{
+    ScheduleIn(_beatInterval * beat, action);
+}`
+      }
+    ],
+    ideas: [
+      {
+        title: "音楽とズレないじゃんけん進行の設計",
+        body: "BGMに合わせて出題や判定が進むように、処理を「何拍後に実行するか」で予約する仕組みを自作しました。BGMの再生中はBGMの再生時間を、ポーズ中やフェーズ切り替え中はオーディオ用の時計（dspTime）を基準に切り替えることで、テンポが変わる場面でも音と処理がずれないようにしました。"
+      },
+      {
+        title: "テンポの加速と出題パターンの切り替え",
+        body: "フェーズが進むとBPMを上げてBGMを差し替え、出す手の順番も固定とランダムを切り替える仕組みにしました。"
+      }
+    ],
+    problems: [
+      {
+        problem: "自作のスケジューラは音との同期には強い一方で、時計の切り替えや予約の管理でコードが複雑になり、自分を含めチームの誰もが触りにくい状態になりました。また、他のミニゲームはコルーチンで進行を管理していて、書き方が揃っていませんでした。",
+        solution: "チームで修正しやすいことを優先して、他のミニゲームと同じコルーチン方式に作り直しました。出題・回答・スコア表示などの流れをコルーチンごとに分け、「1拍分待つ」処理を挟んで順番に進める形にしたことで、読みやすく直しやすいコードになりました。"
+      }
+    ],
     links: []                       // 非公開リポジトリなのでリンクなし
   },
   {
@@ -110,9 +169,7 @@ const WORKS = [
     myCode: ["［担当した機能］"],
     ideas: [{ title: "［工夫した点の見出し］", body: "［何を、なぜ、どう工夫したか］" }],
     problems: [{ problem: "［発生した問題　例：3Dの知識がない中でぶつかった壁］", solution: "［どう調べて乗り越えたか］" }],
-    links: [
-      { label: "GitHub（初代）", url: "https://github.com/riusiu/GolferShot" }
-    ]
+    links: []
   },
   {
     id: "cell-spiral",
