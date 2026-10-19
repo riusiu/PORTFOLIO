@@ -338,6 +338,14 @@ p { margin: 0 0 1em; }
   .contact-list li { grid-template-columns: 1fr; gap: 2px; }
 }
 
+/* ===== 初代とリメイクの比較 ===== */
+.versions { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 56em; }
+.version { border: 1px solid var(--line); border-radius: 8px; padding: 18px 22px; }
+.version:last-child { border-color: var(--blue); background: var(--blue-soft); }
+.version h3 { font-size: 1.05rem; color: var(--navy); margin-bottom: 8px; }
+.version .code-list { margin-top: 14px; }
+@media (max-width: 640px) { .versions { grid-template-columns: 1fr; } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
