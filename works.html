@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<title>Works｜ポートフォリオ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="works">
+<a class="skip" href="#main">本文へ移動</a>
+<header id="site-header" class="site-header"></header>
+
+<main id="main" class="section page-top">
+  <div class="container">
+    <div class="page-head">
+      <h1 class="page-title">Works</h1>
+      <p class="page-lead">これまでに制作したゲームです。カードを選ぶと、担当したプログラムや工夫した点を見られます。</p>
+    </div>
+    <div class="filter-bar">
+      <div class="filters" role="group" aria-label="作品の絞り込み">
+        <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">すべて</button>
+        <button class="filter-btn" type="button" data-filter="team" aria-pressed="false">チーム制作</button>
+        <button class="filter-btn" type="button" data-filter="solo" aria-pressed="false">個人制作</button>
+      </div>
+      <p class="works-count" id="works-count" aria-live="polite"></p>
+    </div>
+    <div class="works-grid" id="works-grid"></div>
+  </div>
+</main>
+
+<footer id="site-footer" class="site-footer"></footer>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
