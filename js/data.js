@@ -75,7 +75,49 @@ const WORKS = [
   {
     id: "golfer-shot",
     title: "GolferShot",
-    subtitle: "［ジャンル］（Golfer-Shot のリメイク）",
+    subtitle: "［ジャンル］（初代とリメイク）",
+    type: "",                       // "team" か "solo" を入れてください
+    status: "リメイク作品",
+    thumbnail: "",
+    screenshots: [],
+    youtube: "",
+    engine: "Unity / C#",
+    teamSize: "初代：2人（実質ほぼ1人で制作）／リメイク：1人",
+    period: "［制作期間］",
+    role: "［担当箇所　例：プログラム全般］",
+    summary: "3Dを授業で習う前に、実質ほぼ一人で作り切った初代と、そのリメイク。",
+    versionsTitle: "初代とリメイクの比較",
+    versions: [
+      {
+        label: "初代 GolferShot",
+        teamSize: "2人（実質ほぼ1人で制作）",
+        engine: "Unity / C#",
+        context: "3Dをまだ授業で習っていない状態で制作",
+        points: ["パワーゲージ", "［初代で実装したこと］"]
+      },
+      {
+        label: "リメイク GolfRemake",
+        teamSize: "1人",
+        engine: "Unity / C#（lilToon使用）",
+        context: "［制作時期・当時の状況］",
+        points: ["プレイヤーの操作全般", "［リメイクで改善したこと］"]
+      }
+    ],
+    description: [
+      "［ゲームの概要：どんな遊びか、プレイヤーの目的は何か］",
+      "［リメイクしようと思った理由］"
+    ],
+    myCode: ["［担当した機能］"],
+    ideas: [{ title: "［工夫した点の見出し］", body: "［何を、なぜ、どう工夫したか］" }],
+    problems: [{ problem: "［発生した問題　例：3Dの知識がない中でぶつかった壁］", solution: "［どう調べて乗り越えたか］" }],
+    links: [
+      { label: "GitHub（初代）", url: "https://github.com/riusiu/GolferShot" }
+    ]
+  },
+  {
+    id: "cell-spiral",
+    title: "細胞スパイラル",
+    subtitle: "［ジャンル］",
     type: "team",
     status: "",
     thumbnail: "",
@@ -86,33 +128,37 @@ const WORKS = [
     period: "［制作期間］",
     role: "［担当箇所］",
     summary: "［一行紹介］",
-    description: ["［ゲームの概要：どんな遊びか、プレイヤーの目的は何か］", "［リメイクで何を変えたか］"],
-    myCode: ["パワーゲージ（の修正）", "［ほかに担当した機能］"],
+    description: ["［ゲームの概要：どんな遊びか、プレイヤーの目的は何か］"],
+    myCode: [
+      "食べ物のデータ・一覧の管理（FoodList / FoodStatus）",
+      "プレートまわりの実装・角度調整",
+      "シーンをまたいでもBGMが途切れない仕組み",
+      "リザルト画面の文言",
+      "メンバーのブランチの統合（マージ）"
+    ],
     ideas: [{ title: "［工夫した点の見出し］", body: "［何を、なぜ、どう工夫したか］" }],
     problems: [{ problem: "［発生した問題］", solution: "［どう原因を調べ、どう解決したか］" }],
-    links: [
-      { label: "GitHub", url: "https://github.com/riusiu/GolferShot" }
-    ]
+    links: []                       // 非公開リポジトリなのでリンクなし
   },
   {
-    id: "golf-remake",
-    title: "GolfRemake",
+    id: "braking-viking",
+    title: "BrakingViking",
     subtitle: "［ジャンル］",
-    type: "solo",
+    type: "team",
     status: "",
     thumbnail: "",
     screenshots: [],
     youtube: "",
-    engine: "Unity / C#（lilToon使用）",
-    teamSize: "1人",
+    engine: "Unity",
+    teamSize: "［人数］",
     period: "［制作期間］",
-    role: "［担当箇所　例：プログラム全般（プレイヤー操作など）］",
+    role: "［担当箇所］",
     summary: "［一行紹介］",
     description: ["［ゲームの概要：どんな遊びか、プレイヤーの目的は何か］"],
-    myCode: ["プレイヤーの操作全般", "［ほかに担当した機能］"],
+    myCode: ["［担当した機能］"],
     ideas: [{ title: "［工夫した点の見出し］", body: "［何を、なぜ、どう工夫したか］" }],
     problems: [{ problem: "［発生した問題］", solution: "［どう原因を調べ、どう解決したか］" }],
-    links: []                       // 非公開リポジトリなのでリンクなし
+    links: []
   },
   {
     id: "gakupenbiyori",
@@ -133,39 +179,6 @@ const WORKS = [
     ideas: [{ title: "［工夫した点の見出し］", body: "［何を、なぜ、どう工夫したか］" }],
     problems: [{ problem: "［発生した問題］", solution: "［どう原因を調べ、どう解決したか］" }],
     links: []                       // 非公開リポジトリなのでリンクなし
-  },
-  {
-    id: "gyro",
-    title: "Gyro",
-    subtitle: "目隠しスイカ割り（スマホ2台で遊ぶブラウザゲーム）",
-    type: "",                       // "team" か "solo" を入れてください
-    status: "ブラウザでプレイ可能",
-    thumbnail: "",
-    screenshots: [],
-    youtube: "",
-    engine: "HTML / JavaScript（ブラウザ）",
-    teamSize: "［人数］",
-    period: "2日",
-    role: "［担当箇所］",
-    summary: "スマホのジャイロセンサーで「振る」操作をする、スマホ2台で遊ぶ目隠しスイカ割りゲーム。",
-    description: [
-      "プレイヤー役と観測者役の2台のスマホを合言葉（コード）でつなぎ、観測者が画面を見ながらプレイヤーを誘導してスイカを割ります。",
-      "スイカ割りのほかに「スイカ耐久」や、カメラを使う「ゆうれい探し」モード、1台で遊べるソロモードも用意しています。",
-      "［ゲームのこだわりや面白さを追記］"
-    ],
-    myCode: [
-      "［担当した機能　例：ジャイロセンサーによるスイング判定］",
-      "［例：WebRTCによる2台間の通信］",
-      "［例：カメラ映像を使ったゆうれい探しモード］"
-    ],
-    ideas: [{ title: "［工夫した点の見出し］", body: "［何を、なぜ、どう工夫したか］" }],
-    problems: [
-      { problem: "［発生した問題　例：端末によってセンサーの許可やジャイロが使えない］", solution: "［どう解決したか　例：タッチ・ボタン操作への切り替えを用意した］" }
-    ],
-    links: [
-      { label: "GitHub", url: "https://github.com/riusiu/Gyro" }
-      // 遊べるURLができたら → { label: "プレイする", url: "https://..." },
-    ]
   }
 ];
 
@@ -175,6 +188,25 @@ const WORKS = [
 const AI_INTRO = "［このページの説明　例：ゲーム開発の効率化を目的に、AIエージェントの活用を研究しています。］";
 
 const AI_RESEARCH = [
+  {
+    id: "gyro",
+    title: "AIを活用した短期ゲーム開発：Gyro（目隠しスイカ割り）",
+    period: "2日",
+    status: "",
+    summary: "AIを主体に、スマホ2台で遊ぶブラウザゲームをHTML / JavaScriptで2日で制作。",
+    goal: "［目的　例：AIを使うと、どこまで短期間で遊べるゲームを形にできるか試す］",
+    tools: ["HTML / JavaScript", "WebRTC", "スマホのジャイロセンサー", "［使用したAI］"],
+    approach: [
+      "スマホ2台を合言葉（コード）でつなぎ、プレイヤー役と観測者役で遊ぶ仕組みにした",
+      "ジャイロセンサーで「振る」操作、カメラを使う「ゆうれい探し」モード、1台で遊べるソロモードを用意",
+      "［AIにどこまで任せ、どこを自分で判断・修正したか］"
+    ],
+    results: ["2日で遊べる形まで完成", "［遊んだ人の反応など］"],
+    learnings: ["［AIに任せてうまくいったこと・うまくいかなかったこと］"],
+    links: [
+      { label: "GitHub", url: "https://github.com/riusiu/Gyro" }
+    ]
+  },
   {
     id: "personal-agent",
     title: "自分専用AIエージェントの構築",
@@ -215,10 +247,10 @@ const AI_RESEARCH = [
    works：そのスキルを使った作品の id を並べると、スキル表から作品へリンクされます。
 --------------------------------- */
 const SKILLS = [
-  { name: "Unity",           years: "［年数］", level: 0, note: "", works: ["space-survival", "golf-remake", "golfer-shot", "gakupenbiyori"] },
-  { name: "C#",              years: "［年数］", level: 0, note: "", works: ["space-survival", "golf-remake", "golfer-shot", "gakupenbiyori"] },
-  { name: "HTML / JavaScript", years: "［年数］", level: 0, note: "WebRTC・端末センサーを使用", works: ["gyro"] },
-  { name: "Git / GitHub",    years: "［年数］", level: 0, note: "チーム開発でブランチ運用", works: ["space-survival", "golfer-shot", "gakupenbiyori"] },
+  { name: "Unity",           years: "［年数］", level: 0, note: "", works: ["space-survival", "golfer-shot", "cell-spiral", "gakupenbiyori"] },
+  { name: "C#",              years: "［年数］", level: 0, note: "", works: ["space-survival", "golfer-shot", "cell-spiral", "gakupenbiyori"] },
+  { name: "HTML / JavaScript", years: "［年数］", level: 0, note: "WebRTC・端末センサーを使用（AI研究ページのGyro）", works: [] },
+  { name: "Git / GitHub",    years: "［年数］", level: 0, note: "チーム開発でブランチ運用", works: ["space-survival", "golfer-shot", "cell-spiral", "gakupenbiyori"] },
   { name: "JetBrains Rider", years: "［年数］", level: 0, note: "", works: [] },
   { name: "Unreal Engine",   years: "［年数］", level: 0, note: "授業で学習中", works: [] }
 ];

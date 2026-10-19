@@ -172,6 +172,22 @@
         }).join("") + "</ul>"
       : "";
 
+    var versions = "";
+    if ((w.versions || []).length) {
+      versions = '<section class="detail-section"><h2>' + esc(w.versionsTitle || "初代とリメイク") + '</h2><div class="versions">' +
+        w.versions.map(function (v) {
+          var pts = (v.points || []).map(function (p) { return "<li>" + esc(p) + "</li>"; }).join("");
+          return '<div class="version"><h3>' + esc(v.label) + "</h3>" +
+            '<dl class="spec">' +
+              "<div><dt>制作人数</dt><dd>" + esc(v.teamSize) + "</dd></div>" +
+              "<div><dt>開発環境</dt><dd>" + esc(v.engine) + "</dd></div>" +
+              "<div><dt>状況</dt><dd>" + esc(v.context) + "</dd></div>" +
+            "</dl>" +
+            (pts ? '<ul class="code-list">' + pts + "</ul>" : "") +
+          "</div>";
+        }).join("") + "</div></section>";
+    }
+
     main.innerHTML =
       '<div class="container">' +
         '<nav class="breadcrumb" aria-label="現在地"><a href="works.html">Works</a><span aria-hidden="true">/</span><span>' + esc(w.title) + "</span></nav>" +
@@ -186,6 +202,8 @@
           '<div class="detail-media">' + media + "</div>" +
           '<aside class="detail-spec">' + specList(w, "spec spec-lg") + links + "</aside>" +
         "</div>" +
+
+        versions +
 
         '<section class="detail-section"><h2>ゲーム紹介</h2>' +
           (w.description || []).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") + "</section>" +
