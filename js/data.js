@@ -375,7 +375,7 @@ const PLANNING = [
   },
   {
     title: "Gyro（目隠しスイカ割り）",
-    link: "ai.html#gyro",
+    link: "ai-detail.html?id=gyro",
     role: "アイデア出し",
     body: "ジャイロセンサーを使うなど、遊びのアイデアを考えた。［アイデアのきっかけを追記］"
   },
