@@ -86,8 +86,6 @@
           '<li class="has-sub"><a href="works.html"' + cur(page === "works" || page === "work") + ">Works</a>" +
             '<ul class="sub-list">' + sub + "</ul></li>" +
           '<li><a href="ai.html"' + cur(page === "ai" || page === "ai-detail") + ">AI Research</a></li>" +
-          '<li><a href="index.html#home-skills-h">Skills</a></li>' +
-          '<li><a href="index.html#contact-h">Contact</a></li>' +
         "</ul></nav>" +
       "</div>";
     var btn = el.querySelector(".menu-btn");
