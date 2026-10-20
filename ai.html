@@ -1,29 +1,43 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<title>AI Research｜ポートフォリオ</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Research｜開発支援・技術研究</title>
+<meta name="description" content="Unity MCP・AI3D Launcher・Memory Hub・Gyroの開発研究を紹介します。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/redesign.css">
 </head>
 <body data-page="ai">
 <a class="skip" href="#main">本文へ移動</a>
 <header id="site-header" class="site-header"></header>
+<main id="main">
 
-<main id="main" class="page-top">
-  <div class="container">
-    <div class="page-head">
-      <h1 class="page-title">AI Research</h1>
-      <p class="page-lead" id="ai-lead"></p>
+<section class="research-banner">
+  <div class="container research-banner-inner">
+    <div>
+      <span class="page-kicker">DEVELOPMENT & EXPERIMENTS</span>
+      <h1>AI Research</h1>
+      <p class="research-banner-lead">AIで、ゲーム開発の課題を解決する。</p>
+      <p id="ai-lead"></p>
     </div>
-    <ul class="ai-toc" id="ai-toc" aria-label="研究テーマ一覧"></ul>
-    <div id="ai-list"></div>
+    <div class="research-banner-graphic" aria-hidden="true"><div><span>AI × GAME</span><small>CREATE / IMPROVE</small></div></div>
   </div>
-</main>
+</section>
+<section class="research-index" aria-label="研究テーマ一覧">
+  <div class="container">
+    <div class="research-grid" id="research-grid"></div>
+    <div class="research-outro">
+      <h2>AIで、もっと面白いゲーム開発を。</h2>
+      <p>実際の制作で感じた課題から、役立つツールやワークフローを考え、検証と改善を続けています。</p>
+    </div>
+  </div>
+</section>
 
+</main>
 <footer id="site-footer" class="site-footer"></footer>
 <script src="js/data.js"></script>
 <script src="js/main.js"></script>
