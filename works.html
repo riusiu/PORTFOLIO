@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<title>Works｜ポートフォリオ</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Works｜ゲーム作品</title>
+<meta name="description" content="Unityなどで制作したゲームの一覧と、各作品の実装・担当内容を紹介します。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/redesign.css">
 </head>
 <body data-page="works">
 <a class="skip" href="#main">本文へ移動</a>
 <header id="site-header" class="site-header"></header>
+<main id="main">
 
-<main id="main" class="section page-top">
+<section class="page-banner">
   <div class="container">
-    <div class="page-head">
-      <h1 class="page-title">Works</h1>
-      <p class="page-lead">これまでに制作したゲームです。カードを選ぶと、担当したプログラムや工夫した点を見られます。</p>
-    </div>
+    <span class="page-kicker">GAME PROJECTS</span>
+    <h1 class="page-title">Works</h1>
+    <p class="page-lead">制作したゲーム作品の一覧です。作品を選ぶと、担当したプログラムや工夫した点を詳しく確認できます。</p>
+  </div>
+</section>
+<section class="section page-main">
+  <div class="container">
     <div class="filter-bar">
       <div class="filters" role="group" aria-label="作品の絞り込み">
         <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">すべて</button>
@@ -29,8 +35,9 @@
     </div>
     <div class="works-grid" id="works-grid"></div>
   </div>
-</main>
+</section>
 
+</main>
 <footer id="site-footer" class="site-footer"></footer>
 <script src="js/data.js"></script>
 <script src="js/main.js"></script>
