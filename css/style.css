@@ -420,6 +420,7 @@ p { margin: 0 0 1em; }
   transition: opacity .55s ease, transform .55s ease, box-shadow .22s ease, border-color .22s ease;
 }
 .js-reveal .is-visible { opacity: 1; transform: none; }
+.js-reveal .contact-list li.is-visible { opacity: 1; transform: none; }
 
 /* カードのホバー（演出の後に効くよう最後に置く） */
 .work-card:hover, .work-card:focus-within,
