@@ -9,7 +9,6 @@ body { background:#fff; }
 .site-header { background:rgba(255,255,255,.96); box-shadow:0 3px 20px rgba(17,39,75,.035); }
 .header-inner { min-height:var(--header-h); }
 .logo { font-size:1.2rem; letter-spacing:-.025em; }
-.logo::before { content:"✳"; color:var(--blue); font-size:1.25em; margin-right:9px; }
 .nav-list > li > a { font-size:.87rem; }
 .section { padding:70px 0; }
 .section-title { border:0; padding:0; margin-bottom:0; font-size:clamp(1.55rem,3vw,2.1rem); letter-spacing:-.03em; }
@@ -246,3 +245,53 @@ body[data-page="home"] .hero-actions .btn-ghost:hover { background:var(--blue-so
   .more-about-content {padding-left:18px;padding-right:18px;}
 }
 @media (prefers-reduced-motion: reduce) { .research-card,.btn {transition:none!important;} }
+
+/* Home flow: About -> philosophy -> planning -> works -> research -> skills */
+.section-home-values { padding-top:32px; padding-bottom:62px; }
+.section-home-values .philo-list { gap:18px; }
+.section-home-values .philo-item {
+  padding:24px 24px 15px; border:1px solid #dce7f5;
+  border-top:3px solid var(--blue); border-radius:10px;
+  box-shadow:0 7px 22px rgba(21,56,105,.04); background:#fff;
+}
+.section-home-values .philo-item h3 { font-size:1.06rem; }
+.section-home-values .philo-item p { color:#536780;line-height:1.85; }
+.section-home-planning { padding-top:58px;padding-bottom:58px; }
+.section-home-planning .plan-list { max-width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px; }
+.section-home-planning .plan-item {
+  display:block;background:#fff;padding:22px 24px;border:1px solid #dce7f5;border-radius:11px;
+  box-shadow:0 7px 22px rgba(21,56,105,.04);
+}
+.section-home-planning .plan-item:last-child { border-bottom:1px solid #dce7f5; }
+.section-home-planning .plan-head { display:flex;flex-wrap:wrap;align-items:center;gap:7px 12px;margin-bottom:12px; }
+.section-home-planning .plan-title { font-size:1.03rem; }
+.section-home-planning .plan-role { margin:0; }
+.section-home-planning .plan-item p { color:#536780;font-size:.92rem;line-height:1.85; }
+.section-home-works { padding-top:65px; }
+.section-home-skills { border-top:1px solid var(--line); }
+.home-skill-grid { list-style:none; padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px; }
+.home-skill-card { min-width:0; padding:22px 24px;border-radius:11px;background:#fff;border:1px solid #dce6f3;box-shadow:0 7px 21px rgba(21,56,105,.045); }
+.home-skill-card h3 { color:var(--navy);font-family:var(--font-en);font-size:1.28rem;margin:0 0 12px; }
+.home-skill-card h3::before { content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin:0 11px 2px 0;background:var(--blue); }
+.home-skill-note { color:#61718b;font-size:.88rem;margin:0 0 12px; }
+.home-skill-works { display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;align-items:center; }
+.home-skill-works > span { flex-basis:100%;font-size:.73rem;color:var(--muted); }
+.home-skill-works a {font-size:.76rem;color:#315b93;background:#eef4fc;border-radius:7px;padding:5px 8px;text-decoration:none;}
+.home-skill-works a:hover { color:#fff;background:var(--navy); }
+.home-contact { margin-top:44px;padding:30px 32px;background:#f5f9ff;border:1px solid #dce7f5;border-radius:13px; }
+.home-contact h3 {color:var(--navy);font-family:var(--font-en);font-size:1.4rem;margin:0 0 10px;}
+.home-contact .contact-list {max-width:100%;}
+.home-contact .contact-list li:last-child {border-bottom:0;}
+#home-skills-h,#contact-h,#philo-h,#plan-h {scroll-margin-top:calc(var(--header-h) + 16px);}
+@media(max-width:900px) {
+  .section-home-planning .plan-list {grid-template-columns:1fr;}
+  .home-skill-grid {grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:640px) {
+  .section-home-values {padding:30px 0 42px;}
+  .section-home-planning {padding:46px 0;}
+  .section-home-planning .plan-list {gap:12px;}
+  .section-home-works {padding-top:49px;}
+  .home-skill-grid {grid-template-columns:1fr;}
+  .home-contact {padding:22px 20px;margin-top:30px;}
+}
