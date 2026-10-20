@@ -78,7 +78,7 @@
     }).join("");
     el.innerHTML =
       '<div class="header-inner">' +
-        '<a class="logo" href="index.html">' + esc(SITE.nameEn || SITE.name) + "</a>" +
+        '<a class="logo" href="index.html">' + esc(SITE.nameEn && SITE.nameEn !== "PORTFOLIO" ? SITE.nameEn : SITE.name) + "</a>" +
         '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="global-nav">' +
           '<span class="menu-bars" aria-hidden="true"></span><span class="menu-text">メニュー</span></button>' +
         '<nav id="global-nav" class="global-nav" aria-label="サイト内メニュー"><ul class="nav-list">' +
@@ -152,7 +152,7 @@
   function renderHome() {
     var set = function (id, html) { var e = document.getElementById(id); if (e) e.innerHTML = html; };
     set("hero-name", esc(SITE.name));
-    set("hero-role", esc(SITE.role) + "志望");
+    set("hero-role", '<span class="hero-person">' + esc(SITE.name) + "</span>" + esc(SITE.role) + "志望");
     set("hero-catch", esc(SITE.catchphrase && !SITE.catchphrase.includes("［") ? SITE.catchphrase : "Unity・C#を中心に、ゲーム制作とAIを活用した開発環境づくりに取り組んでいます。"));
     set("hero-school", SITE.school && !SITE.school.includes("［") ? esc(SITE.school) + "　" + esc(SITE.department && !SITE.department.includes("［") ? SITE.department : "") : "");
     var heroSkills = (typeof SKILLS !== "undefined" ? SKILLS : []).slice(0, 5).map(function (s) {
@@ -171,11 +171,12 @@
       : '<span class="photo-initial" aria-hidden="true">' + esc(initial) + "</span>");
 
     var rows = [
-      ["名前", SITE.name], ["学校", SITE.school], ["学科・専攻", SITE.department],
+      ["名前", SITE.name], ["学校", SITE.school, SITE.schoolUrl], ["学科・専攻", SITE.department],
       ["卒業", SITE.graduation], ["志望職種", SITE.role], ["好きなジャンル", SITE.favoriteGenres]
     ];
     set("profile-table", rows.map(function (r) {
-      return "<div><dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd></div>";
+      var val = r[2] ? '<a href="' + esc(r[2]) + '" target="_blank" rel="noopener">' + esc(r[1]) + "</a>" : esc(r[1]);
+      return "<div><dt>" + esc(r[0]) + "</dt><dd>" + val + "</dd></div>";
     }).join(""));
     set("intro", SITE.intro.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join(""));
     set("philosophy", SITE.philosophy.map(function (p) {
