@@ -5,30 +5,30 @@
 
 /* ---------- プロフィール・連絡先 ---------- */
 const SITE = {
-  name: "［名前］",                 // 例：山田 太郎
+  name: "西川龍昇",                 // 例：山田 太郎
   nameEn: "PORTFOLIO",              // ヘッダー左上の表示（例：TARO YAMADA）
   school: "［学校名］",
-  department: "［学科・専攻］",
-  graduation: "［20XX年3月 卒業見込み］",
+  department: "スーパーIT科/スーパーゲームクリエイター専攻",
+  graduation: "2028年3月 卒業見込み",
   role: "ゲームプログラマー",
-  favoriteGenres: "［好きなゲームジャンル］",
+  favoriteGenres: "RPG，アクションゲーム",
   catchphrase: "［一言キャッチコピー　例：〇〇を大切にするゲームプログラマー］",
   photo: "",                        // 顔写真やアイコン 例："images/profile.jpg"（空ならイニシャル表示）
 
   intro: [
-    "［自己紹介1：どこで何を学んでいるか］",
-    "［自己紹介2：普段使っている技術や、作っているゲームの傾向］",
-    "［自己紹介3：このサイトで何を紹介しているか］"
+    "東京デザインテクノロジーセンター専門学校でゲーム制作を学んでいます。",
+    "普段は主にUnityとC#を使ってゲーム制作に取り組んでいます。",
+    "このサイトでは、これまでに携わった個人制作およびチーム制作の作品、を紹介しています。"
   ],
 
   philosophy: [
-    { title: "［考え方1の見出し］", body: "［ゲーム制作で大切にしていることを1〜2文で］" },
-    { title: "［考え方2の見出し］", body: "［チーム制作での姿勢など］" },
-    { title: "［考え方3の見出し］", body: "［これから伸ばしたいこと］" }
+    { title: "制作時に大切にしていること", body: "［ゲーム制作で大切にしていることを1〜2文で］" },
+    { title: "制作での姿勢", body: "［チーム制作での姿勢など］" },
+    { title: "これから伸ばしたいこと", body: "［これから伸ばしたいこと］" }
   ],
 
   github: "https://github.com/riusiu",
-  email: "",                        // 例："name@example.com"
+  email: "ryusho.nishikawa@gmail.com",                        // 例："name@example.com"
   others: [
     // { label: "X", url: "https://x.com/..." },
   ]
@@ -375,7 +375,7 @@ const PLANNING = [
   },
   {
     title: "Gyro（目隠しスイカ割り）",
-    link: "ai-detail.html?id=gyro",
+    link: "ai.html#gyro",
     role: "アイデア出し",
     body: "ジャイロセンサーを使うなど、遊びのアイデアを考えた。［アイデアのきっかけを追記］"
   },
@@ -393,8 +393,5 @@ const PLANNING = [
 const SKILLS = [
   { name: "Unity",           years: "［年数］", level: 0, note: "", works: ["space-survival", "golfer-shot", "cell-spiral", "gakupenbiyori"] },
   { name: "C#",              years: "［年数］", level: 0, note: "", works: ["space-survival", "golfer-shot", "cell-spiral", "gakupenbiyori"] },
-  { name: "HTML / JavaScript", years: "［年数］", level: 0, note: "WebRTC・端末センサーを使用（AI研究ページのGyro）", works: [] },
-  { name: "Git / GitHub",    years: "［年数］", level: 0, note: "チーム開発でブランチ運用", works: ["space-survival", "golfer-shot", "cell-spiral", "gakupenbiyori"] },
-  { name: "JetBrains Rider", years: "［年数］", level: 0, note: "", works: [] },
   { name: "Unreal Engine",   years: "［年数］", level: 0, note: "授業で学習中", works: [] }
 ];
