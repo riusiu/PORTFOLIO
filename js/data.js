@@ -189,7 +189,7 @@ private void ScheduleBeat(int beat, Action action)
     screenshots: [],
     youtube: "",
     engine: "Unity / C#（2D、LitMotion使用）",
-    teamSize: "［人数］（プログラマーのみのチーム）",
+    teamSize: "5人（プログラマーのみのチーム）",
     period: "2025年12月〜2026年1月",
     role: "［担当箇所］",
     summary: "流れてくる料理を食べて、細胞の栄養ゲージを保ちながらスコアを稼ぐ2Dゲーム。",
@@ -204,7 +204,12 @@ private void ScheduleBeat(int beat, Action action)
       "リザルト画面の文言",
       "メンバーのブランチの統合（マージ）"
     ],
-    ideas: [{ title: "［工夫した点の見出し］", body: "［何を、なぜ、どう工夫したか］" }],
+    ideas: [
+      {
+        title: "原案の企画を一歩進める",
+        body: "原案では3つだった栄養ゲージを、ビタミン・無機質を加えた5つに増やし、栄養の偏り方によって「〜を取り過ぎた」「〜が足りない」などの結末に分かれるようにしました。この改変は、メンバーと二人で考えて提案したものです。"
+      }
+    ],
     problems: [{ problem: "［発生した問題］", solution: "［どう原因を調べ、どう解決したか］" }],
     links: []                       // 非公開リポジトリなのでリンクなし
   },
