@@ -85,7 +85,7 @@
           '<li><a href="index.html"' + cur(page === "home") + ">Home / About</a></li>" +
           '<li class="has-sub"><a href="works.html"' + cur(page === "works" || page === "work") + ">Works</a>" +
             '<ul class="sub-list">' + sub + "</ul></li>" +
-          '<li><a href="ai.html"' + cur(page === "ai") + ">AI Research</a></li>" +
+          '<li><a href="ai.html"' + cur(page === "ai" || page === "ai-detail") + ">AI Research</a></li>" +
           '<li><a href="skills.html"' + cur(page === "skills") + ">Skills / Contact</a></li>" +
         "</ul></nav>" +
       "</div>";
@@ -131,17 +131,21 @@
     "</dl>";
   }
   function card(w) {
+    var subtitle = (w.subtitle || "").includes("［") ? "" : (w.subtitle || "");
+    var summary = (w.summary || "").includes("［") ? "" : (w.summary || "");
     return '<article class="work-card">' +
       '<a class="work-card-link" href="' + workUrl(w) + '">' +
         '<div class="work-card-media">' + thumb(w, "work-card-img") +
-          '<span class="tag tag-' + esc(w.type) + '">' + typeLabel(w.type) + "</span></div>" +
+          (w.type ? '<span class="tag tag-' + esc(w.type) + '">' + typeLabel(w.type) + "</span>" : "") + "</div>" +
         '<div class="work-card-body">' +
+          '<span class="work-card-kicker">GAME DEVELOPMENT</span>' +
           '<h3 class="work-card-title">' + esc(w.title) + "</h3>" +
-          (w.subtitle ? '<p class="work-card-sub">' + esc(w.subtitle) + "</p>" : "") +
-          specList(w, "spec") +
-          '<span class="work-card-more">詳細を見る</span>' +
-        "</div>" +
-      "</a></article>";
+          (subtitle ? '<p class="work-card-sub">' + esc(subtitle) + "</p>" : "") +
+          (summary ? '<p class="work-card-desc">' + esc(summary) + "</p>" : "") +
+          '<div class="work-card-bottom"><div class="card-tags"><span>' + esc(w.engine || "Unity") + '</span>' +
+          (w.type ? '<span>' + esc(typeLabel(w.type)) + "</span>" : "") + "</div>" +
+          '<span class="work-card-more">詳細を見る</span></div>' +
+        "</div></a></article>";
   }
 
   /* ---------- HOME / ABOUT ---------- */
@@ -149,8 +153,8 @@
     var set = function (id, html) { var e = document.getElementById(id); if (e) e.innerHTML = html; };
     set("hero-name", esc(SITE.name));
     set("hero-role", esc(SITE.role) + "志望");
-    set("hero-catch", esc(SITE.catchphrase));
-    set("hero-school", esc(SITE.school) + "　" + esc(SITE.department));
+    set("hero-catch", esc(SITE.catchphrase && !SITE.catchphrase.includes("［") ? SITE.catchphrase : "Unity・C#を中心に、ゲーム制作とAIを活用した開発環境づくりに取り組んでいます。"));
+    set("hero-school", SITE.school && !SITE.school.includes("［") ? esc(SITE.school) + "　" + esc(SITE.department && !SITE.department.includes("［") ? SITE.department : "") : "");
     var heroSkills = (typeof SKILLS !== "undefined" ? SKILLS : []).slice(0, 5).map(function (s) {
       return "<li>" + esc(s.name) + "</li>";
     }).join("");
@@ -187,6 +191,8 @@
       }).join(""));
     }
     set("featured", WORKS.slice(0, 3).map(card).join(""));
+    set("home-research", AI_RESEARCH.map(function (r, i) { return researchCard(r, i, true); }).join(""));
+    set("home-skills", SKILLS.slice(0, 6).map(function (r) { return "<li>" + esc(r.name) + "</li>"; }).join(""));
   }
 
   /* ---------- WORKS ---------- */
@@ -354,45 +360,104 @@
     document.getElementById("contact-list").innerHTML = items.join("");
   }
 
-  /* ---------- AI研究 ---------- */
-  function list(items, cls) {
-    return '<ul class="' + cls + '">' + (items || []).map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("") + "</ul>";
+  /* ---------- AI Research: index and readable detail pages ---------- */
+  function researchUrl(r) {
+    return "ai-detail.html?id=" + encodeURIComponent(r.id);
+  }
+  function researchShortTitle(r) {
+    return (r.title || "").split("｜")[0].split(" — ")[0];
+  }
+  function researchVisual(r, i) {
+    var symbols = {"unity-mcp":"MCP","ai3d-launcher":"3D","memory-hub":"MD","gyro":"GYRO"};
+    return '<div class="research-visual visual-' + esc(r.id) + '" aria-hidden="true">' +
+      '<span class="research-visual-grid"></span><span class="visual-corner">0' + (i + 1) +
+      ' / RESEARCH</span><span class="visual-mark">' + esc(symbols[r.id] || "AI") + "</span></div>";
+  }
+  function researchChips(items, limit) {
+    return '<div class="research-chip-list">' + (items || []).slice(0, limit || 4).map(function (item) {
+      return "<span>" + esc(item) + "</span>";
+    }).join("") + "</div>";
+  }
+  function researchCard(r, i, compact) {
+    return '<article class="research-card' + (compact ? " compact" : "") + '">' +
+      '<a class="research-card-link" href="' + researchUrl(r) + '">' +
+        researchVisual(r, i) +
+        '<div class="research-card-content"><h3>' + esc(researchShortTitle(r)) + "</h3>" +
+          '<p>' + esc(r.summary) + '</p><div class="research-card-foot">' +
+          researchChips(r.tools, compact ? 2 : 3) +
+          '<span class="research-link-text">詳しく見る →</span></div>' +
+        "</div></a></article>";
+  }
+  function researchList(items) {
+    return '<ul class="code-list">' + (items || []).map(function (item) {
+      return "<li>" + esc(item) + "</li>";
+    }).join("") + "</ul>";
   }
   function renderAI() {
     var lead = document.getElementById("ai-lead");
     if (lead) lead.textContent = AI_INTRO;
-    var toc = document.getElementById("ai-toc");
-    toc.innerHTML = AI_RESEARCH.map(function (r) {
-      return '<li><a href="#' + esc(r.id) + '">' + esc(r.title) + "</a></li>";
+    var grid = document.getElementById("research-grid");
+    if (grid) grid.innerHTML = AI_RESEARCH.map(function (r, i) {
+      return researchCard(r, i, false);
     }).join("");
-    document.getElementById("ai-list").innerHTML = AI_RESEARCH.map(function (r) {
-      var links = (r.links || []).length
-        ? '<ul class="link-list">' + r.links.map(function (l) {
-            return '<li><a class="btn btn-ghost" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + "</a></li>";
-          }).join("") + "</ul>" : "";
-      return '<article class="ai-entry" id="' + esc(r.id) + '">' +
-        '<aside class="ai-meta">' +
-          (r.status ? '<span class="tag tag-status">' + esc(r.status) + "</span>" : "") +
-          '<dl class="spec">' +
-            "<div><dt>期間</dt><dd>" + esc(r.period) + "</dd></div>" +
-            "<div><dt>使用技術</dt><dd><div class=\"chips\">" + (r.tools || []).map(function (x) { return "<span>" + esc(x) + "</span>"; }).join("") + "</div></dd></div>" +
-          "</dl>" + links +
-        "</aside>" +
-        '<div class="ai-body">' +
-          '<h2 class="ai-title">' + esc(r.title) + "</h2>" +
-          '<p class="ai-summary">' + esc(r.summary) + "</p>" +
-          '<div class="ai-block"><h3>目的</h3><p>' + esc(r.goal) + "</p></div>" +
-          '<div class="ai-block"><h3>やったこと</h3>' + list(r.approach, "code-list") + "</div>" +
-          '<div class="ai-block"><h3>結果</h3>' + list(r.results, "code-list") + "</div>" +
-          '<div class="ai-block"><h3>学んだこと</h3>' + list(r.learnings, "code-list") + "</div>" +
-        "</div>" +
-      "</article>";
+  }
+  function renderAIDetail() {
+    var root = document.getElementById("research-detail");
+    if (!root) return;
+    var id = new URLSearchParams(location.search).get("id");
+    var r = AI_RESEARCH.filter(function (item) { return item.id === id; })[0];
+    if (!r) {
+      root.innerHTML = '<div class="container not-found"><h1>研究テーマが見つかりません</h1>' +
+        '<p><a class="btn" href="ai.html">AI Research一覧に戻る</a></p></div>';
+      return;
+    }
+    var index = AI_RESEARCH.indexOf(r);
+    var spotlight = {
+      "unity-mcp":"Unity操作専用サービスの月間回数枠や追加クレジット消費に依存しない接続構成",
+      "ai3d-launcher":"複数の生成AIを一つの画面にまとめ、品質を検証しながらゲーム素材を制作",
+      "memory-hub":"ChatGPT・GitHub・Obsidianで、確定仕様と作業履歴を引き継げる仕組み",
+      "gyro":"AIを実装支援に使い、2日間でスマホのセンサーを活用したゲームを試作"
+    };
+    document.title = researchShortTitle(r) + "｜AI Research｜ポートフォリオ";
+    var links = (r.links || []).map(function (link) {
+      return '<li><a class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="' +
+        esc(link.url) + '">' + esc(link.label) + "</a></li>";
     }).join("");
+    var prev = AI_RESEARCH[index - 1], next = AI_RESEARCH[index + 1];
+    root.innerHTML =
+      '<header class="research-detail-hero"><div class="container">' +
+        '<nav class="breadcrumb" aria-label="現在地"><a href="index.html">Home</a>' +
+        '<span>/</span><a href="ai.html">AI Research</a><span>/</span><span>' + esc(researchShortTitle(r)) + "</span></nav>" +
+        '<span class="eyebrow" style="color:#afcef9">0' + (index + 1) + ' / AI RESEARCH</span>' +
+        '<h1>' + esc(researchShortTitle(r)) + "</h1>" +
+        '<p class="research-hero-summary">' + esc(r.summary) + "</p>" +
+        researchChips(r.tools, 5) + "</div></header>" +
+      '<div class="container">' +
+        '<div class="research-focus"><span class="research-focus-label">この研究のポイント</span>' +
+          '<h2>' + esc(spotlight[r.id] || r.summary) + "</h2></div>" +
+        '<div class="research-detail-layout"><div class="research-primary">' +
+          '<section class="research-detail-section"><h2>開発の背景・目的</h2><p>' + esc(r.goal) + "</p></section>" +
+          '<section class="research-detail-section"><h2>工夫した点・実装内容</h2>' +
+            '<details class="research-details"><summary>技術的な取り組みを見る（' + (r.approach || []).length + '項目）</summary>' +
+              researchList(r.approach) + "</details></section>" +
+          '<section class="research-detail-section"><h2>結果と現在の課題</h2>' + researchList(r.results) + "</section>" +
+          '<section class="research-detail-section"><h2>学んだこと</h2>' + researchList(r.learnings) + "</section>" +
+        '</div><aside class="research-fact-card"><h2>Project Info</h2>' +
+          '<dl><dt>制作・検証期間</dt><dd>' + esc(r.period) + '</dd>' +
+          '<dt>現在の状態</dt><dd>' + esc(r.status || "検証中") + '</dd>' +
+          '<dt>使用技術</dt><dd>' + researchChips(r.tools, 20) + '</dd></dl>' +
+          (links ? '<ul class="link-list">' + links + "</ul>" : "") +
+        '</aside></div>' +
+        '<nav class="research-pager" aria-label="研究テーマの移動"><a href="ai.html">← AI Research一覧</a>' +
+          (prev ? '<a href="' + researchUrl(prev) + '">' + esc(researchShortTitle(prev)) + " ←</a>" : "") +
+          (next ? '<a href="' + researchUrl(next) + '">次の研究：' + esc(researchShortTitle(next)) + " →</a>" : "") +
+        "</nav></div>";
   }
 
   renderHeader();
   renderFooter();
   if (page === "ai") renderAI();
+  if (page === "ai-detail") renderAIDetail();
   if (page === "home") renderHome();
   if (page === "works") renderWorks();
   if (page === "work") renderWork();
