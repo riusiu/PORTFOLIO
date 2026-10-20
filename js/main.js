@@ -360,9 +360,7 @@
     items.push(SITE.github
       ? '<li><span class="contact-label">GitHub</span><a href="' + esc(SITE.github) + '" target="_blank" rel="noopener">' + esc(SITE.github.replace(/^https?:\/\//, "")) + "</a></li>"
       : '<li><span class="contact-label">GitHub</span><span class="muted">［GitHubのURLを data.js に入力］</span></li>');
-    items.push(SITE.email
-      ? '<li><span class="contact-label">メール</span><a href="mailto:' + esc(SITE.email) + '">' + esc(SITE.email) + "</a></li>"
-      : '<li><span class="contact-label">メール</span><span class="muted">［メールアドレスを data.js に入力］</span></li>');
+    if (SITE.email) items.push('<li><span class="contact-label">メール</span><a href="mailto:' + esc(SITE.email) + '">' + esc(SITE.email) + "</a></li>");
     (SITE.others || []).forEach(function (o) {
       items.push('<li><span class="contact-label">' + esc(o.label) + '</span><a href="' + esc(o.url) + '" target="_blank" rel="noopener">' + esc(o.url.replace(/^https?:\/\//, "")) + "</a></li>");
     });
