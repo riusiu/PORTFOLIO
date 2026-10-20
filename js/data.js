@@ -192,7 +192,7 @@ private void ScheduleBeat(int beat, Action action)
     engine: "Unity / C#（2D、LitMotion使用）",
     teamSize: "5人（プログラマーのみのチーム）",
     period: "2025年12月〜2026年1月",
-    role: "［担当箇所］",
+    role: "プログラム（食べ物データ・お皿・BGM・リザルト）／企画の改変提案",
     summary: "流れてくる料理を食べて、細胞の栄養ゲージを保ちながらスコアを稼ぐ2Dゲーム。",
     description: [
       "回転寿司のように流れてくる料理をクリックして食べ、体の中の細胞に栄養を届けるゲームです。料理を食べると炭水化物・脂質・タンパク質・ビタミン・無機質の5つのゲージが増え、何も食べないと減っていきます。料理にカーソルを合わせるとどのゲージが増えるか分かるので、ゲージをあふれさせず、空にもしないように料理を選びながら、制限時間が終わるまで食べ続けてスコアを伸ばします。食べ過ぎや栄養の偏りによって「炭水化物を取り過ぎた」「ビタミンが足りない」などの結末に分かれます。",
@@ -408,12 +408,12 @@ const PLANNING = [
     title: "Gyro（目隠しスイカ割り）",
     link: "ai-detail.html?id=gyro",
     role: "アイデア出し",
-    body: "ジャイロセンサーを使うなど、遊びのアイデアを考えた。［アイデアのきっかけを追記］"
+    body: "ジャイロセンサーを使うなど、遊びのアイデアを考えた。"
   },
   {
     title: "BrakingViking",
     role: "企画修正・バランス調整",
-    body: "企画の修正と、ゲームバランスの調整をメンバーのPCで直接行った。［どんな調整をして、どう良くなったかを追記］"
+    body: "企画の修正と、ゲームバランスの調整をメンバーのPCで直接行った。"
   }
 ];
 
@@ -422,7 +422,7 @@ const PLANNING = [
    works：そのスキルを使った作品の id を並べると、スキル表から作品へリンクされます。
 --------------------------------- */
 const SKILLS = [
-  { name: "Unity",           years: "［年数］", level: 0, note: "", works: ["space-survival", "golfer-shot", "cell-spiral", "gakupenbiyori"] },
-  { name: "C#",              years: "［年数］", level: 0, note: "", works: ["space-survival", "golfer-shot", "cell-spiral", "gakupenbiyori"] },
+  { name: "Unity",           years: "3年", level: 0, note: "", works: ["space-survival", "golfer-shot", "cell-spiral", "gakupenbiyori"] },
+  { name: "C#",              years: "3年", level: 0, note: "", works: ["space-survival", "golfer-shot", "cell-spiral", "gakupenbiyori"] },
   { name: "Unreal Engine",   years: "［年数］", level: 0, note: "授業で学習中", works: [] }
 ];
