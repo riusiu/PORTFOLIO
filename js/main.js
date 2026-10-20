@@ -86,7 +86,8 @@
           '<li class="has-sub"><a href="works.html"' + cur(page === "works" || page === "work") + ">Works</a>" +
             '<ul class="sub-list">' + sub + "</ul></li>" +
           '<li><a href="ai.html"' + cur(page === "ai" || page === "ai-detail") + ">AI Research</a></li>" +
-          '<li><a href="skills.html"' + cur(page === "skills") + ">Skills / Contact</a></li>" +
+          '<li><a href="index.html#home-skills-h">Skills</a></li>' +
+          '<li><a href="index.html#contact-h">Contact</a></li>' +
         "</ul></nav>" +
       "</div>";
     var btn = el.querySelector(".menu-btn");
@@ -109,7 +110,8 @@
           '<li><a href="index.html">Home / About</a></li>' +
           '<li><a href="works.html">Works</a></li>' +
           '<li><a href="ai.html">AI Research</a></li>' +
-          '<li><a href="skills.html">Skills / Contact</a></li>' +
+          '<li><a href="index.html#home-skills-h">Skills</a></li>' +
+          '<li><a href="index.html#contact-h">Contact</a></li>' +
         "</ul>" +
         '<p class="footer-copy">&copy; ' + new Date().getFullYear() + " " + esc(SITE.name) + "</p>" +
       "</div>";
@@ -192,7 +194,14 @@
     }
     set("featured", WORKS.slice(0, 3).map(card).join(""));
     set("home-research", AI_RESEARCH.map(function (r, i) { return researchCard(r, i, true); }).join(""));
-    set("home-skills", SKILLS.slice(0, 6).map(function (r) { return "<li>" + esc(r.name) + "</li>"; }).join(""));
+    set("home-skills", SKILLS.map(function (skill) {
+      var related = (skill.works || []).map(findWork).filter(Boolean);
+      var links = related.length ? '<div class="home-skill-works"><span>使用作品</span>' +
+        related.map(function (w) { return '<a href="' + workUrl(w) + '">' + esc(w.title) + '</a>'; }).join("") +
+        "</div>" : "";
+      var note = skill.note && !skill.note.includes("［") ? '<p class="home-skill-note">' + esc(skill.note) + "</p>" : "";
+      return '<li class="home-skill-card"><h3>' + esc(skill.name) + "</h3>" + note + links + "</li>";
+    }).join(""));
   }
 
   /* ---------- WORKS ---------- */
@@ -330,7 +339,7 @@
   /* ---------- SKILLS / CONTACT ---------- */
   function renderSkills() {
     var body = document.getElementById("skills-body");
-    body.innerHTML = SKILLS.map(function (s) {
+    if (body) body.innerHTML = SKILLS.map(function (s) {
       var lv = Number(s.level) || 0;
       var pips = lv
         ? '<span class="pips" role="img" aria-label="習熟度 5段階中' + lv + '">' +
@@ -357,7 +366,8 @@
     (SITE.others || []).forEach(function (o) {
       items.push('<li><span class="contact-label">' + esc(o.label) + '</span><a href="' + esc(o.url) + '" target="_blank" rel="noopener">' + esc(o.url.replace(/^https?:\/\//, "")) + "</a></li>");
     });
-    document.getElementById("contact-list").innerHTML = items.join("");
+    var contact = document.getElementById("contact-list");
+    if (contact) contact.innerHTML = items.join("");
   }
 
   /* ---------- AI Research: index and readable detail pages ---------- */
@@ -461,6 +471,6 @@
   if (page === "home") renderHome();
   if (page === "works") renderWorks();
   if (page === "work") renderWork();
-  if (page === "skills") renderSkills();
+  if (page === "home" || page === "skills") renderSkills();
   reveal();
 })();
