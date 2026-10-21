@@ -819,3 +819,28 @@ body[data-page="home"] .strengths-planning .plan-list {margin:0;padding:0;}
 @media (max-width:640px) {
   body[data-page="home"] .section-home-values .strengths-planning {margin-top:24px;padding-top:24px;}
 }
+
+
+/* Homepage: typography first, with an intentional two-line headline. */
+body[data-page="home"] .hero-inner {grid-template-columns:minmax(0,1fr);gap:0;}
+body[data-page="home"] .hero-copy {max-width:970px;}
+body[data-page="home"] .hero-headline .hero-line {display:block;}
+body[data-page="home"] .hero-headline {font-size:clamp(2.4rem,4.2vw,3.45rem);line-height:1.36;}
+body[data-page="home"] .hero-catch {max-width:52em;}
+
+/* Compact vector diagrams in research cover cards and detail pages. */
+.research-visual.has-diagram {background:#090a0c;}
+.research-visual.has-diagram .research-preview-image {
+  background:#090a0c;
+  object-fit:contain;
+}
+.research-visual.has-diagram .research-visual-grid,
+.research-visual.has-diagram .visual-corner,
+.research-visual.has-diagram .visual-mark {display:none;}
+.research-diagram-figure {max-width:1000px;margin:32px auto 30px;}
+.research-diagram-figure img {display:block;width:100%;height:auto;border-radius:13px;border:1px solid #41464d;box-shadow:0 10px 30px rgba(8,25,44,.12);}
+.research-diagram-figure + .research-focus {margin-top:0;}
+@media (max-width:640px) {
+  body[data-page="home"] .hero-headline {font-size:clamp(1.95rem,7vw,2.5rem);}
+  .research-diagram-figure {margin:20px auto 24px;}
+}
