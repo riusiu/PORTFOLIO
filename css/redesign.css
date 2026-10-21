@@ -848,3 +848,65 @@ body[data-page="home"] .hero-catch {max-width:52em;}
 /* Individual Tools & AI pages: show a screenshot frame only after its image loads. */
 .research-feature-media[data-project-media] { display:none; }
 .research-feature-media[data-project-media].is-loaded { display:block; }
+
+
+/* 2026-10-21: Give homepage typography the space freed by the right-side art. */
+body[data-page="home"] .hero-inner {
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  gap: 0;
+}
+body[data-page="home"] .hero-copy {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+body[data-page="home"] .hero-headline {
+  font-size: clamp(2.4rem, 4.1vw, 3.5rem);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+@media (min-width: 1024px) {
+  body[data-page="home"] .hero-headline .hero-line {
+    display: inline;
+    white-space: nowrap;
+  }
+  body[data-page="home"] .hero-headline .hero-line + .hero-line::before {
+    content: "　";
+  }
+}
+@media (max-width: 1023px) {
+  body[data-page="home"] .hero-headline .hero-line {display: block;}
+}
+@media (max-width: 640px) {
+  body[data-page="home"] .hero-headline {
+    font-size: clamp(1.85rem, 7vw, 2.45rem);
+    line-height: 1.4;
+  }
+}
+
+/* Tools & AI: all listing cards use the same text-only design, without image headers. */
+.research-card-noimage .research-card-link {display:flex;flex-direction:column;}
+.research-card-noimage .research-card-content {
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  padding:25px 26px;
+  border-top:3px solid #4da0f3;
+}
+.research-card-noimage .research-card-content h3 {
+  margin:2px 0 12px;
+  line-height:1.4;
+}
+.research-card-noimage .research-card-content p {
+  min-height:0;
+  flex:1;
+}
+.research-card-noimage.compact .research-card-content {padding:18px;}
+.research-card-noimage.compact .research-card-content p {min-height:0;}
+/* The Tools & AI page banner also has no artificial image panel. */
+.research-banner-inner {grid-template-columns:minmax(0,1fr);}
+@media (max-width:640px) {
+  .research-card-noimage .research-card-content {padding:20px;}
+  .research-card-noimage.compact .research-card-content {padding:18px;}
+}
