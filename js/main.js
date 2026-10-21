@@ -332,6 +332,12 @@
           (next ? '<a class="pager-next" href="' + workUrl(next) + '"><small>次の作品</small>' + esc(next.title) + "</a>" : "<span></span>") +
         "</nav>" +
       "</div>";
+    if (!(w.problems || []).length) {
+      Array.prototype.forEach.call(main.querySelectorAll(".detail-section"), function (s) {
+        var h = s.querySelector("h2");
+        if (h && h.textContent === "発生した問題と解決方法") s.parentNode.removeChild(s);
+      });
+    }
     buildToc(main);
   }
 
