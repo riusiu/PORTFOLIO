@@ -82,10 +82,10 @@
         '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="global-nav">' +
           '<span class="menu-bars" aria-hidden="true"></span><span class="menu-text">メニュー</span></button>' +
         '<nav id="global-nav" class="global-nav" aria-label="サイト内メニュー"><ul class="nav-list">' +
-          '<li><a href="index.html"' + cur(page === "home") + ">Home / About</a></li>" +
+          '<li><a href="index.html"' + cur(page === "home") + ">Home</a></li>" +
           '<li class="has-sub"><a href="works.html"' + cur(page === "works" || page === "work") + ">Works</a>" +
             '<ul class="sub-list">' + sub + "</ul></li>" +
-          '<li><a href="ai.html"' + cur(page === "ai" || page === "ai-detail") + ">AI Research</a></li>" +
+          '<li><a href="ai.html"' + cur(page === "ai" || page === "ai-detail") + ">Tools & AI</a></li>" +
         "</ul></nav>" +
       "</div>";
     var btn = el.querySelector(".menu-btn");
@@ -105,9 +105,9 @@
       '<div class="footer-inner">' +
         '<p class="footer-name">' + esc(SITE.name) + "｜" + esc(SITE.role) + "</p>" +
         '<ul class="footer-nav">' +
-          '<li><a href="index.html">Home / About</a></li>' +
+          '<li><a href="index.html">Home</a></li>' +
           '<li><a href="works.html">Works</a></li>' +
-          '<li><a href="ai.html">AI Research</a></li>' +
+          '<li><a href="ai.html">Tools & AI</a></li>' +
           '<li><a href="index.html#home-skills-h">Skills</a></li>' +
           '<li><a href="index.html#contact-h">Contact</a></li>' +
         "</ul>" +
@@ -175,7 +175,7 @@
     set("hero-meta",
       (heroSkills ? '<ul class="hero-skills" aria-label="主な使用技術">' + heroSkills + "</ul>" : "") +
       '<dl class="hero-stats"><div><dt>WORKS</dt><dd>' + WORKS.length + "</dd></div>" +
-      (aiCount ? "<div><dt>AI RESEARCH</dt><dd>" + aiCount + "</dd></div>" : "") + "</dl>");
+      (aiCount ? "<div><dt>TOOLS & AI</dt><dd>" + aiCount + "</dd></div>" : "") + "</dl>");
 
     var src = (SITE.nameEn && SITE.nameEn !== "PORTFOLIO" ? SITE.nameEn : SITE.name).replace(/［[^］]*］/g, "").trim();
     var initial = src.charAt(0);
@@ -398,7 +398,7 @@
     if (contact) contact.innerHTML = items.join("");
   }
 
-  /* ---------- AI Research: index and readable detail pages ---------- */
+  /* ---------- Tools & AI: index and readable detail pages ---------- */
   function researchUrl(r) {
     return "ai-detail.html?id=" + encodeURIComponent(r.id);
   }
@@ -411,7 +411,7 @@
     return '<div class="research-visual visual-' + esc(r.id) + '"' +
       (hasImage ? ' data-project-media' : ' aria-hidden="true"') + '>' +
       '<span class="research-visual-grid"></span><span class="visual-corner">0' + (i + 1) +
-      ' / RESEARCH</span><span class="visual-mark">' + esc(symbols[r.id] || "AI") + "</span>" +
+      ' / TOOLS & AI</span><span class="visual-mark">' + esc(symbols[r.id] || "AI") + "</span>" +
       (hasImage ? '<img class="research-preview-image" src="' + esc(r.image) +
         '" alt="' + esc(researchShortTitle(r)) + 'の操作画面" loading="lazy">' : "") + "</div>";
   }
@@ -450,7 +450,7 @@
     var r = AI_RESEARCH.filter(function (item) { return item.id === id; })[0];
     if (!r) {
       root.innerHTML = '<div class="container not-found"><h1>研究テーマが見つかりません</h1>' +
-        '<p><a class="btn" href="ai.html">AI Research一覧に戻る</a></p></div>';
+        '<p><a class="btn" href="ai.html">Tools & AI一覧に戻る</a></p></div>';
       return;
     }
     var index = AI_RESEARCH.indexOf(r);
@@ -460,7 +460,7 @@
       "memory-hub":"ChatGPT・GitHub・Obsidianで、確定仕様と作業履歴を引き継げる仕組み",
       "gyro":"AIを実装支援に使い、2日間でスマホのセンサーを活用したゲームを試作"
     };
-    document.title = researchShortTitle(r) + "｜AI Research｜ポートフォリオ";
+    document.title = researchShortTitle(r) + "｜Tools & AI｜ポートフォリオ";
     var links = (r.links || []).map(function (link) {
       return '<li><a class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="' +
         esc(link.url) + '">' + esc(link.label) + "</a></li>";
@@ -469,13 +469,13 @@
     root.innerHTML =
       '<header class="research-detail-hero"><div class="container">' +
         '<nav class="breadcrumb" aria-label="現在地"><a href="index.html">Home</a>' +
-        '<span>/</span><a href="ai.html">AI Research</a><span>/</span><span>' + esc(researchShortTitle(r)) + "</span></nav>" +
-        '<span class="eyebrow" style="color:#afcef9">0' + (index + 1) + ' / AI RESEARCH</span>' +
+        '<span>/</span><a href="ai.html">Tools & AI</a><span>/</span><span>' + esc(researchShortTitle(r)) + "</span></nav>" +
+        '<span class="eyebrow" style="color:#afcef9">0' + (index + 1) + ' / TOOLS & AI</span>' +
         '<h1>' + esc(researchShortTitle(r)) + "</h1>" +
         '<p class="research-hero-summary">' + esc(r.summary) + "</p>" +
         researchChips(r.tools, 5) + "</div></header>" +
       '<div class="container">' +
-        '<div class="research-focus"><span class="research-focus-label">この研究のポイント</span>' +
+        '<div class="research-focus"><span class="research-focus-label">この取り組みのポイント</span>' +
           '<h2>' + esc(spotlight[r.id] || r.summary) + "</h2></div>" +
         (r.image ? '<figure class="research-feature-media" data-project-media>' +
           '<div class="research-feature-fallback">研究成果の画像を準備中です。</div>' +
@@ -511,7 +511,7 @@
           '<dt>使用技術</dt><dd>' + researchChips(r.tools, 20) + '</dd></dl>' +
           (links ? '<ul class="link-list">' + links + "</ul>" : "") +
         '</aside></div>' +
-        '<nav class="research-pager" aria-label="研究テーマの移動"><a href="ai.html">← AI Research一覧</a>' +
+        '<nav class="research-pager" aria-label="研究テーマの移動"><a href="ai.html">← Tools & AI一覧</a>' +
           (prev ? '<a href="' + researchUrl(prev) + '">' + esc(researchShortTitle(prev)) + " ←</a>" : "") +
           (next ? '<a href="' + researchUrl(next) + '">次の研究：' + esc(researchShortTitle(next)) + " →</a>" : "") +
         "</nav></div>";
