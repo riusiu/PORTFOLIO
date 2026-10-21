@@ -315,6 +315,8 @@ const AI_RESEARCH = [
   {
     "id": "ai3d-launcher",
     "title": "AI3D Launcher｜ローカル生成AIを統合するゲーム素材制作ツール",
+    "image": "images/ai3d-launcher.png",
+    "imageCaption": "AI3D Launcherの実画面：テキストからの3D制作、生成設定、タスクキューを一画面で管理",
     "period": "2026年〜（継続開発中）",
     "status": "開発・検証中",
     "summary": "2D画像の生成・修正から3Dモデル制作まで、複数のローカルAIツールを共通画面から扱うためのランチャーを開発しています。",
