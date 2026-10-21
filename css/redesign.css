@@ -793,3 +793,29 @@ body[data-page="work"] .pager {border-top:2px solid #bdd5ef;}
   body[data-page="work"] .detail-spec {padding:9px 15px 17px;}
   body[data-page="work"] .trouble-q,body[data-page="work"] .trouble-a {padding:16px 16px 9px;}
 }
+
+
+/* Home: combine production philosophy and planning examples in one strengths section. */
+body[data-page="home"] .section-home-values .strengths-planning {
+  background:transparent;
+  border:0;
+  border-top:1px solid #b9d2ec;
+  margin-top:34px;
+  padding:30px 0 0;
+}
+body[data-page="home"] .strengths-subtitle {
+  color:#174b90;
+  font-size:1.3rem;
+  line-height:1.5;
+  margin:0 0 6px;
+}
+body[data-page="home"] .strengths-subcaption {
+  color:#526b87;
+  font-size:.91rem;
+  line-height:1.7;
+  margin:0 0 22px;
+}
+body[data-page="home"] .strengths-planning .plan-list {margin:0;padding:0;}
+@media (max-width:640px) {
+  body[data-page="home"] .section-home-values .strengths-planning {margin-top:24px;padding-top:24px;}
+}
