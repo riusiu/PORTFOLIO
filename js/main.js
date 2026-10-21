@@ -420,9 +420,13 @@
   }
   function researchVisual(r, i) {
     var symbols = {"unity-mcp":"MCP","ai3d-launcher":"3D","memory-hub":"MD","gyro":"GYRO"};
-    return '<div class="research-visual visual-' + esc(r.id) + '" aria-hidden="true">' +
+    var hasImage = !!r.image;
+    return '<div class="research-visual visual-' + esc(r.id) + '"' +
+      (hasImage ? ' data-project-media' : ' aria-hidden="true"') + '>' +
       '<span class="research-visual-grid"></span><span class="visual-corner">0' + (i + 1) +
-      ' / RESEARCH</span><span class="visual-mark">' + esc(symbols[r.id] || "AI") + "</span></div>";
+      ' / RESEARCH</span><span class="visual-mark">' + esc(symbols[r.id] || "AI") + "</span>" +
+      (hasImage ? '<img class="research-preview-image" src="' + esc(r.image) +
+        '" alt="' + esc(researchShortTitle(r)) + 'の操作画面" loading="lazy">' : "") + "</div>";
   }
   function researchChips(items, limit) {
     return '<div class="research-chip-list">' + (items || []).slice(0, limit || 4).map(function (item) {
@@ -486,6 +490,12 @@
       '<div class="container">' +
         '<div class="research-focus"><span class="research-focus-label">この研究のポイント</span>' +
           '<h2>' + esc(spotlight[r.id] || r.summary) + "</h2></div>" +
+        (r.image ? '<figure class="research-feature-media" data-project-media>' +
+          '<div class="research-feature-fallback">研究成果の画面イメージは準備中です。</div>' +
+          '<img class="research-feature-image" src="' + esc(r.image) +
+          '" alt="' + esc(researchShortTitle(r)) + 'の実際の操作画面" loading="lazy">' +
+          '<figcaption>' + esc(r.imageCaption || researchShortTitle(r) + "の実際の画面") +
+          '</figcaption></figure>' : '') +
         '<div class="research-detail-layout"><div class="research-primary">' +
           '<section class="research-detail-section"><h2>開発の背景・目的</h2><p>' + esc(r.goal) + "</p></section>" +
           '<section class="research-detail-section"><h2>工夫した点・実装内容</h2>' +
