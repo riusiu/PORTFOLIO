@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="chart-title chart-desc">
+  <title id="chart-title">Gyro の構成図</title>
+  <desc id="chart-desc">ジャイロ操作からWebRTCから協力プレイ。プレイヤーと観測者が一緒に遊ぶブラウザゲーム</desc>
+  <rect width="1200" height="620" rx="28" fill="#090a0c"/>
+  <rect x="16" y="16" width="1168" height="588" rx="28" fill="none" stroke="#34363b" stroke-width="2"/>
+  <rect x="59" y="57" width="6" height="68" rx="3" fill="#a5b5d1"/>
+  <text x="91" y="113" fill="#fafafa" font-family="'Noto Sans JP', 'Yu Gothic', 'Hiragino Kaku Gothic ProN', sans-serif" font-size="66" font-weight="750">Gyro</text>
+  <g font-family="'Noto Sans JP', 'Yu Gothic', 'Hiragino Kaku Gothic ProN', sans-serif">
+   <g>
+      <rect x="60" y="204" width="320" height="270" rx="24" fill="#242426" stroke="#3b3d43" stroke-width="2.5"/>
+      <g transform="translate(220 282)" fill="none" stroke="#f3f4f6" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><rect x="-31" y="-48" width="62" height="94" rx="12"/><path d="M-9 -34 H9 M-6 34 H6"/><path d="M-51 -10 A51 51 0 0 1 -43 -29 M-47 -32 L-43 -29 L-39 -38"/></g>
+      <text x="220" y="395" text-anchor="middle" fill="#ffffff" font-size="41" font-weight="700">ジャイロ操作</text>
+      <text x="220" y="440" text-anchor="middle" fill="#bcbfc7" font-size="26" font-weight="500">スマホを振る</text>
+    </g>
+<g>
+      <rect x="440" y="204" width="320" height="270" rx="24" fill="#101114" stroke="#686c77" stroke-width="2.5"/>
+      <g transform="translate(600 282)" fill="none" stroke="#f3f4f6" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="-32" cy="0" r="13"/><circle cx="33" cy="-22" r="13"/><circle cx="32" cy="29" r="13"/><path d="M-19 -5 L19 -18 M-19 8 L18 24"/></g>
+      <text x="600" y="395" text-anchor="middle" fill="#ffffff" font-size="45" font-weight="700">WebRTC</text>
+      <text x="600" y="440" text-anchor="middle" fill="#bcbfc7" font-size="26" font-weight="500">スマホ2台を接続</text>
+    </g>
+<g>
+      <rect x="820" y="204" width="320" height="270" rx="24" fill="#242426" stroke="#3b3d43" stroke-width="2.5"/>
+      <g transform="translate(980 282)" fill="none" stroke="#f3f4f6" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M-43 -21 H43 Q54 -21 59 -3 L65 25 Q67 46 50 46 Q43 46 32 30 L18 16 H-18 L-32 30 Q-43 46 -50 46 Q-67 46 -65 25 L-59 -3 Q-54 -21 -43 -21 Z M-39 -2 V24 M-52 11 H-26"/><circle cx="35" cy="2" r="4" fill="#ecf0f8" stroke="none"/><circle cx="47" cy="14" r="4" fill="#ecf0f8" stroke="none"/></g>
+      <text x="980" y="395" text-anchor="middle" fill="#ffffff" font-size="41" font-weight="700">協力プレイ</text>
+      <text x="980" y="440" text-anchor="middle" fill="#bcbfc7" font-size="26" font-weight="500">遊びを共有</text>
+    </g>
+   <g fill="none" stroke="#aeb4c0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M383 340 H425"/><path d="M412 326 L426 340 L412 354"/></g>
+<g fill="none" stroke="#aeb4c0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M763 340 H805"/><path d="M792 326 L806 340 L792 354"/></g>
+   <line x1="60" y1="524" x2="1140" y2="524" stroke="#33363b" stroke-width="2"/>
+   <text x="600" y="571" text-anchor="middle" fill="#bfc4ce" font-size="29" font-weight="500">プレイヤーと観測者が一緒に遊ぶブラウザゲーム</text>
+  </g>
+</svg>
