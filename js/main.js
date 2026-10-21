@@ -407,13 +407,15 @@
   }
   function researchVisual(r, i) {
     var symbols = {"unity-mcp":"MCP","ai3d-launcher":"3D","memory-hub":"MD","gyro":"GYRO"};
-    var hasImage = !!r.image;
-    return '<div class="research-visual visual-' + esc(r.id) + '"' +
+    var visualSrc = r.cover || r.image;
+    var hasImage = !!visualSrc;
+    return '<div class="research-visual visual-' + esc(r.id) + (r.cover ? ' has-diagram' : '') + '"' +
       (hasImage ? ' data-project-media' : ' aria-hidden="true"') + '>' +
       '<span class="research-visual-grid"></span><span class="visual-corner">0' + (i + 1) +
       ' / TOOLS & AI</span><span class="visual-mark">' + esc(symbols[r.id] || "AI") + "</span>" +
-      (hasImage ? '<img class="research-preview-image" src="' + esc(r.image) +
-        '" alt="' + esc(researchShortTitle(r)) + 'の操作画面" loading="lazy">' : "") + "</div>";
+      (hasImage ? '<img class="research-preview-image" src="' + esc(visualSrc) +
+        '" alt="' + esc(researchShortTitle(r)) + (r.cover ? 'の仕組み図' : 'の操作画面') +
+        '" loading="lazy">' : "") + "</div>";
   }
   function researchChips(items, limit) {
     return '<div class="research-chip-list">' + (items || []).slice(0, limit || 4).map(function (item) {
@@ -475,6 +477,8 @@
         '<p class="research-hero-summary">' + esc(r.summary) + "</p>" +
         researchChips(r.tools, 5) + "</div></header>" +
       '<div class="container">' +
+        (r.cover ? '<figure class="research-diagram-figure"><img src="' + esc(r.cover) +
+          '" width="1200" height="620" alt="' + esc(researchShortTitle(r)) + 'の仕組み図" loading="eager"></figure>' : '') +
         '<div class="research-focus"><span class="research-focus-label">この取り組みのポイント</span>' +
           '<h2>' + esc(spotlight[r.id] || r.summary) + "</h2></div>" +
         (r.image ? '<figure class="research-feature-media" data-project-media>' +
