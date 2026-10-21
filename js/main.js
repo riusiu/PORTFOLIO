@@ -14,35 +14,66 @@
   function findWork(id) { return WORKS.filter(function (w) { return w.id === id; })[0]; }
   function cur(cond) { return cond ? ' aria-current="page"' : ""; }
 
-  /* ---------- 作品ページの目次 ---------- */
-  function buildToc(root) {
-    var secs = root.querySelectorAll(".detail-section");
-    if (secs.length < 3) return;
-    var links = [];
-    Array.prototype.forEach.call(secs, function (s, i) {
-      var h = s.querySelector("h2");
-      if (!h) return;
-      s.id = "sec-" + (i + 1);
-      links.push('<li><a href="#' + s.id + '">' + esc(h.textContent) + "</a></li>");
+  /* ---------- 個別ページ：見出し一覧から表示内容を切り替える ---------- */
+  function buildSectionSwitcher(root, selector) {
+    var sections = Array.prototype.filter.call(root.querySelectorAll(selector), function (section) {
+      return !!section.querySelector("h2");
     });
+    if (sections.length < 2) return;
+
+    var isWorkPage = selector === ".detail-section";
+    var prefix = isWorkPage ? "sec-" : "topic-";
     var nav = document.createElement("nav");
-    nav.className = "detail-toc";
-    nav.setAttribute("aria-label", "このページの目次");
-    nav.innerHTML = "<ul>" + links.join("") + "</ul>";
-    secs[0].parentNode.insertBefore(nav, secs[0]);
-    if (!("IntersectionObserver" in window)) return;
-    var ul = nav.firstChild;
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        Array.prototype.forEach.call(nav.querySelectorAll("a"), function (a) {
-          var on = a.getAttribute("href") === "#" + e.target.id;
-          a.classList.toggle("is-current", on);
-          if (on) ul.scrollLeft = a.parentNode.offsetLeft - 16;
-        });
+    nav.className = "detail-toc section-switcher";
+    nav.setAttribute("aria-label", "表示する内容を選択");
+    var links = sections.map(function (section, i) {
+      var title = section.querySelector("h2").textContent;
+      section.id = prefix + (i + 1);
+      return '<li><a href="#' + section.id + '" aria-controls="' + section.id +
+        '" aria-expanded="false">' + esc(title) + "</a></li>";
+    });
+    nav.innerHTML = '<p class="section-switcher-caption">見出しを選ぶと、表示内容が切り替わります。</p>' +
+      "<ul>" + links.join("") + "</ul>";
+    sections[0].parentNode.insertBefore(nav, sections[0]);
+    var buttons = Array.prototype.slice.call(nav.querySelectorAll("a"));
+
+    function selectSection(index, updateUrl) {
+      if (index < 0 || index >= sections.length) return;
+      sections.forEach(function (section, i) {
+        var active = i === index;
+        section.hidden = !active;
+        section.classList.toggle("is-active-panel", active);
+        if (active) section.classList.add("is-visible");
+        buttons[i].classList.toggle("is-current", active);
+        buttons[i].setAttribute("aria-expanded", String(active));
+        if (active) buttons[i].setAttribute("aria-current", "true");
+        else buttons[i].removeAttribute("aria-current");
       });
-    }, { rootMargin: "-35% 0px -60% 0px" });
-    Array.prototype.forEach.call(secs, function (s) { io.observe(s); });
+      // Keep each section's existing hash link, but do not jump or scroll.
+      if (updateUrl && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", location.pathname + location.search + "#" + sections[index].id);
+      }
+    }
+
+    nav.addEventListener("click", function (event) {
+      var anchor = event.target.closest("a[href^='#']");
+      if (!anchor || !nav.contains(anchor)) return;
+      var index = buttons.indexOf(anchor);
+      if (index < 0) return;
+      event.preventDefault();
+      selectSection(index, true);
+    });
+
+    window.addEventListener("hashchange", function () {
+      var index = sections.findIndex(function (section) {
+        return "#" + section.id === location.hash;
+      });
+      if (index >= 0) selectSection(index, false);
+    });
+    var initial = sections.findIndex(function (section) {
+      return "#" + section.id === location.hash;
+    });
+    selectSection(initial < 0 ? 0 : initial, false);
   }
 
   /* ---------- スクロールでふわっと表示 ---------- */
@@ -353,7 +384,7 @@
         if (h && h.textContent === "発生した問題と解決方法") s.parentNode.removeChild(s);
       });
     }
-    buildToc(main);
+    buildSectionSwitcher(main, ".detail-section");
     syncProjectMedia(main);
     /* Only activate the player once its asset is actually published to GitHub Pages. */
     var videoHolder = main.querySelector("[data-local-video]");
@@ -515,6 +546,7 @@
           (prev ? '<a href="' + researchUrl(prev) + '">' + esc(researchShortTitle(prev)) + " ←</a>" : "") +
           (next ? '<a href="' + researchUrl(next) + '">次の研究：' + esc(researchShortTitle(next)) + " →</a>" : "") +
         "</nav></div>";
+    buildSectionSwitcher(root, ".research-detail-section");
   }
 
   renderHeader();
