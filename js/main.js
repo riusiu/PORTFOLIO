@@ -478,11 +478,13 @@
         '<div class="research-focus"><span class="research-focus-label">この研究のポイント</span>' +
           '<h2>' + esc(spotlight[r.id] || r.summary) + "</h2></div>" +
         (r.image ? '<figure class="research-feature-media" data-project-media>' +
-          '<div class="research-feature-fallback">研究成果の画面イメージは準備中です。</div>' +
+          '<div class="research-feature-fallback">研究成果の画像を準備中です。</div>' +
+          '<a class="research-feature-open" href="' + esc(r.image) +
+          '" target="_blank" rel="noopener noreferrer" aria-label="' + esc(researchShortTitle(r)) + 'の画面を拡大表示">' +
           '<img class="research-feature-image" src="' + esc(r.image) +
-          '" alt="' + esc(researchShortTitle(r)) + 'の実際の操作画面" loading="lazy">' +
+          '" alt="' + esc(researchShortTitle(r)) + 'の実際の操作画面" loading="lazy"></a>' +
           '<figcaption>' + esc(r.imageCaption || researchShortTitle(r) + "の実際の画面") +
-          '</figcaption></figure>' : '') +
+          '（クリックで拡大）</figcaption></figure>' : '') +
         (r.demoUrl && r.qrImage ?
           '<section class="research-demo" aria-labelledby="research-demo-title">' +
             '<div class="research-demo-copy">' +
