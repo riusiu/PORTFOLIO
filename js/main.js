@@ -219,25 +219,12 @@
   /* ---------- WORKS ---------- */
   function renderWorks() {
     var grid = document.getElementById("works-grid");
-    var count = document.getElementById("works-count");
-    var buttons = document.querySelectorAll(".filter-btn");
-    function draw(filter) {
-      var list = WORKS.filter(function (w) { return filter === "all" || w.type === filter; });
-      grid.innerHTML = list.length
-        ? list.map(card).join("")
-        : '<p class="empty">この条件の作品はまだありません。data.js に作品を追加すると表示されます。</p>';
-      count.textContent = list.length + "作品";
-      syncProjectMedia(grid);
-      reveal();
-    }
-    Array.prototype.forEach.call(buttons, function (b) {
-      b.addEventListener("click", function () {
-        Array.prototype.forEach.call(buttons, function (x) { x.setAttribute("aria-pressed", "false"); });
-        b.setAttribute("aria-pressed", "true");
-        draw(b.dataset.filter);
-      });
-    });
-    draw("all");
+    if (!grid) return;
+    grid.innerHTML = WORKS.length
+      ? WORKS.map(card).join("")
+      : '<p class="empty">作品は準備中です。</p>';
+    syncProjectMedia(grid);
+    reveal();
   }
 
   /* ---------- 作品詳細 ---------- */
