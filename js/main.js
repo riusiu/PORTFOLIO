@@ -111,7 +111,7 @@
           '<li><a href="index.html#home-skills-h">Skills</a></li>' +
           '<li><a href="index.html#contact-h">Contact</a></li>' +
         "</ul>" +
-        '<p class="footer-copy">&copy; ' + new Date().getFullYear() + " " + esc(SITE.name) + "</p>" +
+        '' +
       "</div>";
   }
 
