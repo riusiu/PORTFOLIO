@@ -152,7 +152,7 @@ private void ScheduleBeat(int beat, Action action)
     versions: [
       {
         label: "初代 GolferShot",
-        teamSize: "15人（プログラマー2人・実装は実質ほぼ1人）",
+        teamSize: "15人（プログラマー2人）",
         engine: "Unity / C#",
         context: "プログラマーリーダーとして参加。3Dをまだ授業で習っていない状態で制作",
         points: ["移動・カメラ・ショット・パワーゲージ", "タイマー・リスポーン・リザルト・効果音など、全体を広く担当"]
