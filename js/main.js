@@ -118,9 +118,22 @@
   /* ---------- 作品カード ---------- */
   function thumb(w, cls) {
     if (w.thumbnail) {
-      return '<img class="' + cls + '" src="' + esc(w.thumbnail) + '" alt="' + esc(w.title) + 'の画面" loading="lazy">';
+      return '<div class="' + cls + ' project-media" data-project-media>' +
+        '<div class="asset-fallback" aria-hidden="true"><span>' + esc(w.title) + '</span></div>' +
+        '<img class="asset-picture" src="' + esc(w.thumbnail) + '" alt="' + esc(w.title) + 'のゲーム画面" loading="lazy">' +
+        "</div>";
     }
     return '<div class="' + cls + ' thumb-empty" aria-hidden="true"><span>' + esc(w.title) + "</span></div>";
+  }
+  function syncProjectMedia(root) {
+    Array.prototype.forEach.call(root.querySelectorAll("[data-project-media]"), function (holder) {
+      var img = holder.querySelector("img");
+      if (!img || img.dataset.mediaReady) return;
+      img.dataset.mediaReady = "1";
+      function loaded() { if (img.naturalWidth > 0) holder.classList.add("is-loaded"); }
+      img.addEventListener("load", loaded);
+      if (img.complete) loaded();
+    });
   }
   function specList(w, cls) {
     return '<dl class="' + cls + '">' +
@@ -214,6 +227,7 @@
         ? list.map(card).join("")
         : '<p class="empty">この条件の作品はまだありません。data.js に作品を追加すると表示されます。</p>';
       count.textContent = list.length + "作品";
+      syncProjectMedia(grid);
       reveal();
     }
     Array.prototype.forEach.call(buttons, function (b) {
@@ -244,7 +258,10 @@
     var media = w.youtube
       ? '<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/' + esc(w.youtube) +
         '" title="' + esc(w.title) + 'のプレイ動画" allowfullscreen loading="lazy"></iframe></div>'
-      : thumb(w, "detail-hero-img");
+      : w.localVideo
+        ? '<div class="local-video-holder" data-local-video="' + esc(w.localVideo) +
+          '" data-poster="' + esc(w.thumbnail || "") + '">' + thumb(w, "detail-hero-img") + '</div>'
+        : thumb(w, "detail-hero-img");
 
     var shots = (w.screenshots || []).length
       ? '<div class="shots">' + w.screenshots.map(function (s, i) {
@@ -339,6 +356,27 @@
       });
     }
     buildToc(main);
+    syncProjectMedia(main);
+    /* Only activate the player once its asset is actually published to GitHub Pages. */
+    var videoHolder = main.querySelector("[data-local-video]");
+    if (videoHolder && typeof fetch === "function") {
+      var movieUrl = videoHolder.dataset.localVideo;
+      fetch(movieUrl, { method: "HEAD" }).then(function (response) {
+        if (!response.ok || !videoHolder.isConnected) return;
+        var movie = document.createElement("video");
+        movie.controls = true;
+        movie.preload = "metadata";
+        movie.playsInline = true;
+        movie.setAttribute("aria-label", w.title + "のプレイ動画");
+        if (w.thumbnail) movie.poster = w.thumbnail;
+        var source = document.createElement("source");
+        source.src = movieUrl;
+        source.type = "video/mp4";
+        movie.appendChild(source);
+        videoHolder.replaceChildren(movie);
+        videoHolder.classList.add("has-video");
+      }).catch(function () { /* Thumbnail remains visible when video is not uploaded. */ });
+    }
   }
 
   /* ---------- SKILLS / CONTACT ---------- */
@@ -475,5 +513,6 @@
   if (page === "works") renderWorks();
   if (page === "work") renderWork();
   if (page === "home" || page === "skills") renderSkills();
+  syncProjectMedia(document);
   reveal();
 })();
