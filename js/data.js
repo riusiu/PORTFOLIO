@@ -280,6 +280,7 @@ const AI_RESEARCH = [
   {
     "id": "unity-mcp",
     "title": "Unity MCP｜ChatGPTからUnityを直接操作する開発環境",
+    "cover": "images/unity-mcp-diagram.svg",
     "image": "images/unity-mcp-launcher.png",
     "imageCaption": "Unity MCP Launcher（日本語GUI v4.1）：接続状態とMCP・トンネル操作をまとめた管理画面",
     "period": "2026年10月〜",
@@ -384,6 +385,7 @@ const AI_RESEARCH = [
   {
     "id": "gyro",
     "title": "Gyro｜AIを活用した短期ゲーム開発",
+    "cover": "images/gyro-diagram.svg",
     "period": "2日間",
     "status": "プロトタイプ制作済み",
     "summary": "ゲームの遊び方を自分で考え、AIの実装支援を活用して、スマホ2台で遊べるブラウザゲームを2日間で制作しました。",
