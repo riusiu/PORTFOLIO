@@ -844,3 +844,7 @@ body[data-page="home"] .hero-catch {max-width:52em;}
   body[data-page="home"] .hero-headline {font-size:clamp(1.95rem,7vw,2.5rem);}
   .research-diagram-figure {margin:20px auto 24px;}
 }
+
+/* Individual Tools & AI pages: show a screenshot frame only after its image loads. */
+.research-feature-media[data-project-media] { display:none; }
+.research-feature-media[data-project-media].is-loaded { display:block; }
