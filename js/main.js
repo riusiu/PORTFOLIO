@@ -131,8 +131,16 @@
       if (!img || img.dataset.mediaReady) return;
       img.dataset.mediaReady = "1";
       function loaded() { if (img.naturalWidth > 0) holder.classList.add("is-loaded"); }
+      function failed() {
+        // An unavailable project screenshot should not leave an empty frame behind.
+        if (holder.classList.contains("research-feature-media")) holder.remove();
+      }
       img.addEventListener("load", loaded);
-      if (img.complete) loaded();
+      img.addEventListener("error", failed);
+      if (img.complete) {
+        if (img.naturalWidth > 0) loaded();
+        else failed();
+      }
     });
   }
   function specList(w, cls) {
