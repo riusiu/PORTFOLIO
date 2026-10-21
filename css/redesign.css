@@ -611,3 +611,14 @@ body[data-page="home"] .hero-person { display:block; font-family:var(--font-jp);
  .research-feature-media {padding:9px 9px 11px;}
  .research-feature-media figcaption {font-size:.75rem;}
 }
+
+
+/* Temporary portfolio display choices (restore by removing this block) */
+/* Keep the existing profile image element and data for future reuse. */
+body[data-page="home"] .home-profile-panel .profile-photo {
+  display: none;
+}
+/* The registered projects are currently classified as team works. */
+body[data-page="works"] .filter-btn[data-filter="solo"] {
+  display: none;
+}
