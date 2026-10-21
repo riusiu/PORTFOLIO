@@ -7,8 +7,8 @@
 const SITE = {
   name: "西川龍昇",                 // 例：山田 太郎
   nameEn: "PORTFOLIO",              // ヘッダー左上の表示（例：TARO YAMADA）
-  school: "［学校名］",
-  schoolUrl: "",                    // 学校のサイトURLを入れると、プロフィールの学校名がリンクになります
+  school: "東京デザインテクノロジーセンター専門学校",
+  schoolUrl: "https://www.tech.ac.jp/",                    // 学校のサイトURLを入れると、プロフィールの学校名がリンクになります
   department: "スーパーIT科/スーパーゲームクリエイター専攻",
   graduation: "2028年3月 卒業見込み",
   role: "ゲームプログラマー",
@@ -161,12 +161,12 @@ private void ScheduleBeat(int beat, Action action)
         teamSize: "1人",
         engine: "Unity / C#（lilToon使用）",
         context: "2026年6月〜7月に、約1か月でひとりでリメイク",
-        points: ["プレイヤーの操作全般", "［リメイクで改善したこと］"]
+        points: ["プレイヤーの処理を、入力・移動・カメラ・ショット・アニメーションに分割", "モノの周りを回って狙うショット操作と、エントリーからリザルトまでの流れを作り直し"]
       }
     ],
     description: [
       "フィールドに落ちているマグロや電子レンジ、ケーキなどの「モノ」を、ゴルフのようにショットしてホールに入れ、スコアを競う4人対戦のパーティーゲームです。重いモノほど飛びにくい代わりに高得点で、少ない打数で入れるほどボーナスが入ります。「ゴルフの知識がなくても、友達とわいわい楽しめる」ことをコンセプトにしています。",
-      "初代は15人チームのプログラマーリーダーとして、3Dを授業で習う前の段階で実装の大部分を担当しました。その約1年後、学んだことを活かしてひとりでリメイクしました。［リメイクで何を良くしたかを追記］"
+      "初代は15人チームのプログラマーリーダーとして、3Dを授業で習う前の段階で実装の大部分を担当しました。その約1年後、学んだことを活かしてひとりでリメイクしました。リメイクでは、初代で1つのクラスにまとめていたプレイヤーの処理を役割ごとに分け、ショットの操作やゲームの流れも作り直しています。"
     ],
     myCode: [
       "プレイヤーの移動と、カメラの操作・設定",
@@ -176,7 +176,16 @@ private void ScheduleBeat(int beat, Action action)
       "リザルト画面、タイトル・エントリー画面",
       "UniTask・Input System・lilToonの導入などの初期構築"
     ],
-    ideas: [{ title: "［工夫した点の見出し］", body: "［何を、なぜ、どう工夫したか］" }],
+    ideas: [
+      {
+        title: "1つのクラスにまとめていた処理を、役割ごとに分ける",
+        body: "初代では、移動・ジャンプ・ショット・カメラ・スコアまでを1つのPlayerController（約560行）にまとめていました。リメイクでは、入力・移動・カメラ・ショット・アニメーションをそれぞれ別のクラスに分け、どこに何が書いてあるか分かりやすい構成にしました。"
+      },
+      {
+        title: "ショット操作の作り直し",
+        body: "近くのショットできるモノを探してショットモードに入り、モノの周りを回りながら狙いを定めて山なりに打つ操作にしました。"
+      }
+    ],
     problems: [{ problem: "［発生した問題　例：3Dの知識がない中でぶつかった壁］", solution: "［どう調べて乗り越えたか］" }],
     links: []
   },
@@ -429,5 +438,5 @@ const PLANNING = [
 const SKILLS = [
   { name: "Unity",           years: "3年", level: 0, note: "", works: ["space-survival", "golfer-shot", "cell-spiral", "gakupenbiyori"] },
   { name: "C#",              years: "3年", level: 0, note: "", works: ["space-survival", "golfer-shot", "cell-spiral", "gakupenbiyori"] },
-  { name: "Unreal Engine",   years: "［年数］", level: 0, note: "授業で学習中", works: [] }
+  { name: "Unreal Engine",   years: "1年（授業のみ）", level: 0, note: "授業で学習中", works: [] }
 ];
