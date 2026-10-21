@@ -554,3 +554,60 @@ body[data-page="home"] .hero-person { display:block; font-family:var(--font-jp);
 @media (prefers-reduced-motion: reduce) {
   .asset-picture { transition: none; }
 }
+
+
+/* Real screenshots in AI Research (2026-10) */
+.research-visual .research-preview-image {
+  position:absolute;
+  inset:0;
+  z-index:3;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#e9f1fb;
+  opacity:0;
+  transition:opacity .2s ease;
+}
+.research-visual.is-loaded .research-preview-image {opacity:1;}
+.research-feature-media {
+  margin:0 auto 34px;
+  padding:16px 16px 12px;
+  max-width:760px;
+  background:#f5f9ff;
+  border:1px solid #cbdff4;
+  border-radius:14px;
+  box-shadow:0 10px 28px rgba(16,65,126,.07);
+  text-align:center;
+}
+.research-feature-fallback {
+  min-height:180px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(130deg,#e8f3ff,#f5f9ff);
+  color:#355780;
+  border-radius:9px;
+}
+.research-feature-image {
+  display:none;
+  max-width:100%;
+  max-height:540px;
+  width:auto;
+  height:auto;
+  margin:0 auto;
+  object-fit:contain;
+  border:1px solid #dae6f3;
+  border-radius:9px;
+}
+.research-feature-media.is-loaded .research-feature-image{display:block;}
+.research-feature-media.is-loaded .research-feature-fallback{display:none;}
+.research-feature-media figcaption {
+  color:#62758d;
+  font-size:.82rem;
+  line-height:1.6;
+  margin-top:12px;
+}
+@media(max-width:640px){
+ .research-feature-media {padding:9px 9px 11px;}
+ .research-feature-media figcaption {font-size:.75rem;}
+}
