@@ -910,3 +910,76 @@ body[data-page="home"] .hero-headline {
   .research-card-noimage .research-card-content {padding:20px;}
   .research-card-noimage.compact .research-card-content {padding:18px;}
 }
+
+
+/* Section switcher: keep every heading visible, show one content section at a time. */
+.section-switcher {
+  position:sticky;
+  top:calc(var(--header-h) + 4px);
+  z-index:20;
+  margin:24px 0 20px;
+  padding:18px;
+  background:rgba(247,251,255,.98);
+  border:1px solid #bbd1ed;
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(20,63,119,.08);
+  backdrop-filter:blur(8px);
+}
+.section-switcher .section-switcher-caption {
+  margin:0 0 12px;
+  font-size:.79rem;
+  font-weight:600;
+  color:#5d7492;
+}
+.section-switcher ul {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:9px;
+  list-style:none;
+  padding:0;
+  margin:0;
+  overflow:visible;
+}
+.section-switcher li {min-width:0;}
+.section-switcher a {
+  display:flex;
+  align-items:center;
+  min-height:50px;
+  padding:11px 13px;
+  white-space:normal;
+  overflow-wrap:anywhere;
+  line-height:1.45;
+  color:#254970;
+  font-weight:600;
+  font-size:.87rem;
+  background:#fff;
+  border:1px solid #c6d9ef;
+  border-radius:9px;
+  text-decoration:none;
+  transition:background .16s,border-color .16s,color .16s;
+}
+.section-switcher a:hover {background:#eaf3ff;border-color:#5d9fe8;color:#144983;}
+.section-switcher a.is-current,
+.section-switcher a.is-current:hover {
+  background:#2367be;
+  color:#fff;
+  border-color:#2367be;
+  font-weight:700;
+}
+.section-switcher a:focus-visible {outline:3px solid #64a9ff;outline-offset:3px;}
+.detail-section[hidden],
+.research-detail-section[hidden] {display:none!important;}
+.research-primary .section-switcher {margin:0 0 18px;}
+.research-primary .section-switcher ul {grid-template-columns:repeat(2,minmax(0,1fr));}
+@media (max-width:1023px) {
+  .section-switcher {position:static;}
+}
+@media (max-width:640px) {
+  .section-switcher {margin:16px 0;padding:13px;}
+  .section-switcher ul {grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;}
+  .section-switcher a {font-size:.79rem;min-height:48px;padding:9px 10px;}
+  .section-switcher .section-switcher-caption {font-size:.75rem;}
+}
+@media (prefers-reduced-motion:reduce) {
+  .section-switcher a {transition:none;}
+}
