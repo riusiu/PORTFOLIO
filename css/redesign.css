@@ -647,3 +647,149 @@ body[data-page="works"] .filter-btn[data-filter="solo"] {
   .research-demo {flex-direction:column;align-items:stretch;padding:23px 20px;gap:22px;}
   .research-demo-qr {flex:0 0 auto;width:min(216px,100%);margin:0 auto;}
 }
+
+
+/* Portfolio visual QA: legibility and section boundaries 2026-10-21 */
+/* Japanese prose should wrap naturally, while URLs and long technical tokens remain contained. */
+body {line-break:strict;word-break:normal;}
+body[data-page="work"] p,
+body[data-page="ai-detail"] p,
+body[data-page="home"] .about-text p,
+body[data-page="home"] .philo-item p,
+body[data-page="home"] .plan-item p {text-wrap:pretty;word-break:normal;overflow-wrap:break-word;}
+.work-card-title, .research-card h3, .detail-title,
+.research-detail-hero h1, .research-detail-section h2,
+.research-focus h2, .section-title {word-break:normal;overflow-wrap:break-word;text-wrap:balance;}
+.research-card-content, .research-primary, .research-detail-section,
+.research-fact-card, .detail-top > *, .detail-spec, .work-card-body {min-width:0;}
+/* Previously contact rows used 'word-break:break-all' and split Japanese labels and emails. */
+.contact-list li {word-break:normal;overflow-wrap:normal;}
+.contact-list li a {overflow-wrap:anywhere;word-break:normal;min-width:0;}
+.research-chip-list {min-width:0;}
+.research-chip-list span {max-width:100%;word-break:normal;overflow-wrap:break-word;line-height:1.6;}
+.research-visual.visual-ai3d-launcher .research-preview-image {
+  object-fit:cover;object-position:center top;background:#111a29;
+}
+/* The main pages get cooler blue-gray backgrounds so white cards stand out on bright PC screens. */
+body[data-page="home"] .home-profile-panel {
+  border-color:#b4cce8;
+  box-shadow:0 8px 32px rgba(18,71,145,.09);
+}
+body[data-page="home"] .section-home-planning {
+  background:linear-gradient(180deg,#f7fbff,#eef6ff);
+  border-bottom:1px solid #bed6f1;
+}
+body[data-page="home"] .home-skill-card,
+body[data-page="home"] .plan-item,
+body[data-page="home"] .philo-item {
+  border-color:#bbd3ed;
+}
+body[data-page="works"] .page-main {background:linear-gradient(180deg,#eaf3ff,#f4f8fd 50%,#f7faff);}
+body[data-page="works"] .work-card {border-color:#b7d0ec;}
+body[data-page="ai"] .research-index {background:linear-gradient(180deg,#e8f3ff,#f4f9ff 64%);}
+body[data-page="ai"] .research-card {border-color:#abc6e8;}
+/* Inner pages: related content is grouped into clear panels, not a continuous white column. */
+body[data-page="ai-detail"] .research-detail-page {
+  background:#eff5fd;
+  padding-bottom:72px;
+}
+body[data-page="ai-detail"] .research-detail-layout {
+  grid-template-columns:minmax(0,1fr) minmax(245px,295px);
+  gap:32px;
+}
+body[data-page="ai-detail"] .research-primary {display:grid;gap:18px;}
+body[data-page="ai-detail"] .research-detail-section {
+  padding:26px 29px 27px;
+  margin:0;
+  background:#fff;
+  border:1px solid #bcd3ed;
+  border-left:4px solid #2f76cb;
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(27,72,130,.055);
+}
+body[data-page="ai-detail"] .research-detail-section:nth-child(even) {
+  border-left-color:#6ba9ed;
+  background:#fcfdff;
+}
+body[data-page="ai-detail"] .research-detail-section h2 {align-items:baseline;}
+body[data-page="ai-detail"] .research-detail-section h2::before {
+  width:6px;height:16px;border-radius:3px;flex:none;
+}
+body[data-page="ai-detail"] .research-detail-section p {
+  margin:0;color:#324763;line-height:1.95;max-width:64ch;
+}
+body[data-page="ai-detail"] .research-details {
+  background:#f1f7ff;border-color:#c4d8f0;
+}
+body[data-page="ai-detail"] .research-details summary {
+  padding:16px 19px;line-height:1.6;
+}
+body[data-page="ai-detail"] .research-fact-card {
+  background:#f9fcff;border:1px solid #abc7e6;
+  border-top:4px solid #2d7bde;
+  box-shadow:0 6px 20px rgba(28,81,145,.06);
+}
+body[data-page="ai-detail"] .research-focus {
+  border-color:#accbef;border-left:5px solid #2f7edb;
+  background:linear-gradient(110deg,#fff 72%,#e9f4ff);
+}
+body[data-page="ai-detail"] .research-feature-media {
+  border-color:#aac6e7;
+  background:#f9fcff;
+  padding:20px;
+}
+body[data-page="ai-detail"] .research-feature-image {
+  max-height:620px;cursor:zoom-in;
+}
+.research-feature-open {display:block;width:fit-content;max-width:100%;margin:0 auto;}
+body[data-page="ai-detail"] .research-pager {
+  border-top:2px solid #bed5ed;align-items:center;
+}
+body[data-page="work"] #main {
+  background:linear-gradient(180deg,#eff6ff 0%,#f5f9ff 420px,#eef5fd 100%);
+}
+body[data-page="work"] .detail-head {padding:8px 0 10px;}
+body[data-page="work"] .detail-media {border:1px solid #bad4f0;box-shadow:0 8px 25px rgba(25,70,128,.11);}
+body[data-page="work"] .detail-spec {
+  background:#fff;
+  border:1px solid #b3cde9;border-top:4px solid #3a82db;
+  box-shadow:0 8px 24px rgba(28,78,145,.06);
+}
+body[data-page="work"] .detail-toc {
+  background:rgba(247,251,255,.98);
+  border-bottom:2px solid #bfd6f0;
+}
+body[data-page="work"] .detail-section {
+  margin:0 0 18px;
+  padding:27px 30px;
+  background:#fff;
+  border:1px solid #b9d1ec;
+  border-left:4px solid #347ddb;
+  border-radius:11px;
+  box-shadow:0 6px 18px rgba(27,72,130,.055);
+}
+body[data-page="work"] .detail-section:nth-of-type(even){border-left-color:#79b4ee;background:#fcfdff;}
+body[data-page="work"] .detail-section h2 {margin-top:0;}
+body[data-page="work"] .idea {
+  border:1px solid #c3daf1;
+  background:#eef6ff;
+  padding-bottom:15px;
+}
+body[data-page="work"] .trouble {border-color:#acc9e8;}
+body[data-page="work"] .trouble-q {background:#f7fbff;}
+body[data-page="work"] .trouble-a {background:#e8f3ff;}
+body[data-page="work"] .version {background:#fff;border-color:#b7cfeb;}
+body[data-page="work"] .version:last-child {background:#e9f4ff;border-color:#5592da;}
+body[data-page="work"] .pager {border-top:2px solid #bdd5ef;}
+/* The narrow desktop/tablet region should not force long Japanese prose into cramped columns. */
+@media (max-width:980px) {
+  body[data-page="ai-detail"] .research-detail-layout {grid-template-columns:1fr;gap:22px;}
+  body[data-page="ai-detail"] .research-fact-card {position:static;}
+}
+@media (max-width:640px) {
+  body[data-page="ai-detail"] .research-detail-section {padding:20px 18px 22px;}
+  body[data-page="ai-detail"] .research-feature-media {padding:10px;}
+  body[data-page="work"] .detail-section {padding:21px 18px;}
+  body[data-page="work"] .detail-spec {padding:9px 15px 17px;}
+  body[data-page="work"] .trouble-q,body[data-page="work"] .trouble-a {padding:16px 16px 9px;}
+}
