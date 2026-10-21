@@ -250,12 +250,15 @@
           '" data-poster="' + esc(w.thumbnail || "") + '">' + thumb(w, "detail-hero-img") + '</div>'
         : thumb(w, "detail-hero-img");
 
-    var shots = (w.screenshots || []).length
-      ? '<div class="shots">' + w.screenshots.map(function (s, i) {
-          return '<a href="' + esc(s) + '" target="_blank" rel="noopener"><img src="' + esc(s) +
+    // Hide the entire screenshots section when no screenshots have been registered.
+    var screenshots = (w.screenshots || []).filter(Boolean);
+    var shots = screenshots.length
+      ? '<section class="detail-section"><h2>スクリーンショット</h2><div class="shots">' +
+        screenshots.map(function (shot, i) {
+          return '<a href="' + esc(shot) + '" target="_blank" rel="noopener"><img src="' + esc(shot) +
             '" alt="' + esc(w.title) + "のスクリーンショット" + (i + 1) + '" loading="lazy"></a>';
-        }).join("") + "</div>"
-      : '<p class="placeholder-note">スクリーンショットは data.js の screenshots に画像のパスを追加すると表示されます。</p>';
+        }).join("") + "</div></section>"
+      : "";
 
     var links = (w.links || []).length
       ? '<ul class="link-list">' + w.links.map(function (l) {
@@ -310,7 +313,7 @@
         '<section class="detail-section"><h2>ゲーム紹介</h2>' +
           (w.description || []).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") + "</section>" +
 
-        '<section class="detail-section"><h2>スクリーンショット</h2>' + shots + "</section>" +
+        shots +
 
         '<section class="detail-section"><h2>担当したプログラム</h2><ul class="code-list">' +
           (w.myCode || []).map(function (c) { return "<li>" + esc(c) + "</li>"; }).join("") + "</ul></section>" +
