@@ -407,12 +407,9 @@ const AI_RESEARCH = [
       "短期開発では、AIに実装を任せるだけでなく、何を作るか・どの機能を優先するかを自分で決めることが重要だと学びました。",
       "AIで実装速度を上げられても、端末ごとの動作確認や操作感の調整は別途必要だと感じました。"
     ],
-    "links": [
-      {
-        "label": "GitHub（ソースコード）",
-        "url": "https://github.com/riusiu/Gyro"
-      }
-    ]
+    "demoUrl": "https://riusiu.github.io/Gyrodemo/",
+    "qrImage": "images/gyro-qr.png",
+    "links": []
   }
 ];
 

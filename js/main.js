@@ -78,7 +78,7 @@
     }).join("");
     el.innerHTML =
       '<div class="header-inner">' +
-        '<a class="logo" href="index.html">' + esc(SITE.nameEn && SITE.nameEn !== "PORTFOLIO" ? SITE.nameEn : SITE.name) + "</a>" +
+        '<a class="logo" href="index.html">PORTFOLIO</a>' +
         '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="global-nav">' +
           '<span class="menu-bars" aria-hidden="true"></span><span class="menu-text">メニュー</span></button>' +
         '<nav id="global-nav" class="global-nav" aria-label="サイト内メニュー"><ul class="nav-list">' +
@@ -483,6 +483,19 @@
           '" alt="' + esc(researchShortTitle(r)) + 'の実際の操作画面" loading="lazy">' +
           '<figcaption>' + esc(r.imageCaption || researchShortTitle(r) + "の実際の画面") +
           '</figcaption></figure>' : '') +
+        (r.demoUrl && r.qrImage ?
+          '<section class="research-demo" aria-labelledby="research-demo-title">' +
+            '<div class="research-demo-copy">' +
+              '<span class="research-demo-label">PLAY THE GAME</span>' +
+              '<h2 id="research-demo-title">Gyroをプレイする</h2>' +
+              '<p>ブラウザから遊べます。スマートフォンではQRコードからもアクセスできます。</p>' +
+              '<a class="btn btn-primary" href="' + esc(r.demoUrl) + '" target="_blank" rel="noopener noreferrer">ブラウザでプレイ ↗</a>' +
+              '<a class="research-demo-url" href="' + esc(r.demoUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(r.demoUrl) + '</a>' +
+            '</div>' +
+            '<a class="research-demo-qr" href="' + esc(r.demoUrl) + '" target="_blank" rel="noopener noreferrer" aria-label="Gyroのプレイページを開く">' +
+              '<img src="' + esc(r.qrImage) + '" width="216" height="216" loading="lazy" alt="GyroのプレイページへアクセスするQRコード">' +
+            '</a>' +
+          '</section>' : '') +
         '<div class="research-detail-layout"><div class="research-primary">' +
           '<section class="research-detail-section"><h2>開発の背景・目的</h2><p>' + esc(r.goal) + "</p></section>" +
           '<section class="research-detail-section"><h2>工夫した点・実装内容</h2>' +
