@@ -235,7 +235,8 @@ private void ScheduleBeat(int beat, Action action)
     subtitle: "2人対戦の3Dパーティーゲーム",
     type: "team",
     status: "学園祭出展作",
-    thumbnail: "",
+    thumbnail: "images/gakupen-hero.jpg",
+    localVideo: "images/gakupen_web.mp4",
     screenshots: [],
     youtube: "",
     engine: "Unity / C#（LitMotion使用）",
@@ -279,6 +280,8 @@ const AI_RESEARCH = [
   {
     "id": "unity-mcp",
     "title": "Unity MCP｜ChatGPTからUnityを直接操作する開発環境",
+    "image": "images/unity-mcp-launcher.png",
+    "imageCaption": "Unity MCP Launcher（日本語GUI v4.1）：接続状態とMCP・トンネル操作をまとめた管理画面",
     "period": "2026年10月〜",
     "status": "運用・改善中",
     "summary": "ChatGPTの通常チャットだけでUnity Editorの操作を行える接続環境を構築。Unity操作専用サービスの月間回数枠やクレジット消費に依存しないことが最大の特徴です。",
