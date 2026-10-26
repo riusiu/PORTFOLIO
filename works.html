@@ -1,37 +1,30 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<title>PROGRAM｜西川龍昇 ポートフォリオ</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Works｜ゲーム作品</title>
-<meta name="description" content="Unityなどで制作したゲームの一覧と、各作品の実装・担当内容を紹介します。">
+<meta name="theme-color" content="#16191E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/redesign.css">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/debug.css">
 </head>
 <body data-page="works">
 <a class="skip" href="#main">本文へ移動</a>
-<header id="site-header" class="site-header"></header>
+<header id="bar" class="bar"></header>
 <main id="main">
-
-<section class="page-banner">
-  <div class="container">
-    <span class="page-kicker">GAME PROJECTS</span>
-    <h1 class="page-title">Works</h1>
-    <p class="page-lead">制作したゲーム作品の一覧です。作品を選ぶと、担当したプログラムや工夫した点を詳しく確認できます。</p>
-  </div>
-</section>
-<section class="section page-main">
-  <div class="container">
-    <div class="works-grid" id="works-grid"></div>
-  </div>
-</section>
-
+  <section class="wrap sec" id="program" style="padding-top:48px">
+    <div class="sec-head"><span class="sec-no">01</span><h1 style="font-size:32px">PROGRAM</h1><span class="sec-cap">自分でコードを書いたゲーム制作 — 選ぶと右に詳細が出ます</span></div>
+    <div class="select">
+      <div class="panel scene-list" id="scene-list"></div>
+      <div class="panel inspector" id="inspector" aria-live="polite"></div>
+    </div>
+  </section>
 </main>
-<footer id="site-footer" class="site-footer"></footer>
+<footer id="foot" class="foot"></footer>
 <script src="js/data.js"></script>
-<script src="js/main.js"></script>
+<script src="js/log.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

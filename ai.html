@@ -1,44 +1,29 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<title>TOOLS &amp; AI｜西川龍昇 ポートフォリオ</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tools & AI｜開発支援・技術的な取り組み</title>
-<meta name="description" content="Unity MCP・AI3D Launcher・Memory Hub・Gyroの開発研究を紹介します。">
+<meta name="theme-color" content="#16191E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/redesign.css">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/debug.css">
 </head>
 <body data-page="ai">
 <a class="skip" href="#main">本文へ移動</a>
-<header id="site-header" class="site-header"></header>
+<header id="bar" class="bar"></header>
 <main id="main">
-
-<section class="research-banner">
-  <div class="container research-banner-inner">
-    <div>
-      <span class="page-kicker">DEVELOPMENT & EXPERIMENTS</span>
-      <h1>Tools & AI</h1>
-      <p class="research-banner-lead">AIで、ゲーム開発の課題を解決する。</p>
-      <p id="ai-lead"></p>
-    </div>
-  </div>
-</section>
-<section class="research-index" aria-label="開発ツールとAI活用の取り組み一覧">
-  <div class="container">
-    <div class="research-grid" id="research-grid"></div>
-    <div class="research-outro">
-      <h2>AIで、もっと面白いゲーム開発を。</h2>
-      <p>実際の制作で感じた課題から、役立つツールやワークフローを考え、検証と改善を続けています。</p>
-    </div>
-  </div>
-</section>
-
+  <section class="wrap sec" id="list" style="padding-top:48px">
+    <div class="sec-head"><span class="sec-no">02</span><h1 style="font-size:32px">TOOLS &amp; AI</h1><span class="sec-cap">ゲーム制作を支える、自作ツールとAI活用</span></div>
+    <p class="tools-lead">AIを使ってゲーム制作の課題を解決するために、自分で構築・検証してきたツールと開発環境です。</p>
+    <div class="tool-grid" id="tool-grid"></div>
+  </section>
+  <article class="wrap" id="detail"></article>
 </main>
-<footer id="site-footer" class="site-footer"></footer>
+<footer id="foot" class="foot"></footer>
 <script src="js/data.js"></script>
-<script src="js/main.js"></script>
+<script src="js/log.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
