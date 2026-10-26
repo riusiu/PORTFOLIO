@@ -17,30 +17,40 @@
 <main id="main">
   <section class="wrap hero">
     <div class="hero-main">
-      <div class="hero-label">// PLAYER PROFILE</div>
+      <div class="hero-label">// GAME PROGRAMMER / UNITY &amp; C# / DEV TOOLS</div>
       <div class="hero-who" id="hero-who"></div>
       <h1><span>ゲームを作る。</span><span class="hl">仕組みも作る。</span></h1>
-      <p class="hero-text">Unity・C#でのゲーム制作と、AIを使った開発環境づくりの両方に取り組んでいます。プランナーとプログラマーの両方を学び、チームのタスク管理も担当しています。</p>
+      <p class="hero-text">Unity・C#でゲームを実装するだけでなく、AIを使った開発環境も構築しています。チーム制作では企画の改善や、プログラマーのタスク管理にも取り組んできました。</p>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="#program">ゲーム作品を見る <span aria-hidden="true">↗</span></a>
+        <a class="btn" href="#tools">開発ツールを見る <span aria-hidden="true">↗</span></a>
+      </div>
       <dl class="stats" id="stats"></dl>
     </div>
+    <div class="hero-showcase" id="preview-sec" hidden>
+      <div class="showcase-kicker"><span class="rec">● GAMEPLAY</span><span>実際の制作作品</span></div>
+      <div class="preview">
+        <video id="preview-video" muted playsinline controls preload="metadata"></video>
+        <div class="preview-bar"><span id="preview-label"></span><span class="muted">制作ゲームのプレイ映像</span></div>
+      </div>
+      <div class="proof-links">
+        <a href="https://riusiu.github.io/Gyrodemo/" target="_blank" rel="noopener noreferrer"><span>PLAY NOW</span><strong>Gyroをブラウザで遊ぶ</strong><span aria-hidden="true">↗</span></a>
+        <a href="ai.html?id=unity-mcp"><span>DEV TOOL</span><strong>Unity MCPの構成を見る</strong><span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+  <section class="wrap quick-access">
     <nav class="panel menu" aria-label="デバッグメニュー">
       <div class="panel-head"><strong>DEBUG MENU</strong><span class="muted">v2026.10</span></div>
       <ul class="menu-list">
-        <li><a href="works.html"><span class="m-label">PROGRAM</span><span class="m-sub">ゲーム制作</span><span class="m-count" id="m-program"></span></a></li>
-        <li><a href="ai.html"><span class="m-label">TOOLS &amp; AI</span><span class="m-sub">ツール・AI</span><span class="m-count" id="m-tools"></span></a></li>
-        <li><a href="#strengths"><span class="m-label">STRENGTHS</span><span class="m-sub">強み・企画</span><span class="m-count" id="m-plan"></span></a></li>
-        <li><a href="#log"><span class="m-label">BUILD LOG</span><span class="m-sub">制作の記録</span><span class="m-count"></span></a></li>
-        <li><a href="#profile"><span class="m-label">PROFILE</span><span class="m-sub">プロフィール</span><span class="m-count"></span></a></li>
+        <li><a href="works.html"><span class="m-label"><kbd>F1</kbd> PROGRAM</span><span class="m-sub">ゲーム制作</span><span class="m-count" id="m-program"></span></a></li>
+        <li><a href="ai.html"><span class="m-label"><kbd>F2</kbd> TOOLS &amp; AI</span><span class="m-sub">ツール・AI</span><span class="m-count" id="m-tools"></span></a></li>
+        <li><a href="#strengths"><span class="m-label"><kbd>F3</kbd> STRENGTHS</span><span class="m-sub">強み・企画</span><span class="m-count" id="m-plan"></span></a></li>
+        <li><a href="#log"><span class="m-label"><kbd>F4</kbd> BUILD LOG</span><span class="m-sub">制作の記録</span><span class="m-count"></span></a></li>
+        <li><a href="#profile"><span class="m-label"><kbd>F5</kbd> PROFILE</span><span class="m-sub">プロフィール</span><span class="m-count"></span></a></li>
       </ul>
-      <div class="menu-foot">クリックで各項目へ移動</div>
+      <div class="menu-foot">F1〜F5 または 1〜5 キーで移動できます。F1 がブラウザのヘルプで使われる場合は 1 キーを利用してください。</div>
     </nav>
-  </section>
-
-  <section class="wrap sec" id="preview-sec" hidden aria-label="実機プレイ">
-    <div class="preview">
-      <video id="preview-video" muted playsinline preload="metadata"></video>
-      <div class="preview-bar"><span><span class="rec">● PLAY PREVIEW</span>　<span id="preview-label"></span></span><span class="muted">実機プレイ映像</span></div>
-    </div>
   </section>
 
   <section class="wrap sec" id="program">
