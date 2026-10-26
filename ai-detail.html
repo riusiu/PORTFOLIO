@@ -3,24 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>開発・技術の取り組み｜Tools & AI</title>
-<meta name="description" content="AIを活用したゲーム開発支援に関する研究の技術的な取り組みを紹介します。">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/redesign.css">
+<meta name="robots" content="noindex,follow">
+<title>Tools &amp; AI へ移動しています</title>
+<script>
+(function () {
+  "use strict";
+  // Preserve existing bookmarks that used ai-detail.html?id=...
+  var url = new URL("ai.html", location.href);
+  var params = new URLSearchParams(location.search);
+  if (params.has("id")) url.searchParams.set("id", params.get("id"));
+  location.replace(url.href + location.hash);
+})();
+</script>
 </head>
-<body data-page="ai-detail">
-<a class="skip" href="#main">本文へ移動</a>
-<header id="site-header" class="site-header"></header>
-<main id="main">
-
-<article class="research-detail-page" id="research-detail" aria-label="開発ツール・AI活用の詳細"></article>
-
-</main>
-<footer id="site-footer" class="site-footer"></footer>
-<script src="js/data.js"></script>
-<script src="js/main.js"></script>
-</body>
+<body><p><a href="ai.html">Tools &amp; AI へ移動する</a></p></body>
 </html>
