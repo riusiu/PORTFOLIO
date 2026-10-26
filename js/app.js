@@ -294,6 +294,31 @@
     renderBar("Tool_" + a.id, { toc: true, items: secs.map(function (s) { return { label: s.title, href: "#" + s.id }; }) });
   }
 
+  /* ---------- サイト内ショートカット ---------- */
+  function setupGlobalShortcuts() {
+    var routes = {
+      "1": "works.html",
+      "2": "ai.html",
+      "3": "index.html#strengths",
+      "4": "index.html#log",
+      "5": "index.html#profile"
+    };
+    document.addEventListener("keydown", function (event) {
+      if (event.defaultPrevented || event.repeat ||
+          event.ctrlKey || event.altKey || event.metaKey || event.shiftKey) return;
+      var active = document.activeElement;
+      if (active && (active.isContentEditable ||
+          /^(INPUT|TEXTAREA|SELECT)$/.test(active.tagName))) return;
+      var key = /^F[1-5]$/.test(event.key) ? event.key.slice(1) :
+        /^[1-5]$/.test(event.key) ? event.key : "";
+      if (!key) return;
+      var route = routes[key];
+      if (!route) return;
+      event.preventDefault();
+      window.location.assign(route);
+    });
+  }
+
   /* ---------- 起動 ---------- */
   if (page === "home") { renderBar("Portfolio_Main", globalNav("")); renderHome(); }
   if (page === "works") { renderBar("Program_List", globalNav("program")); renderProgram(); }
@@ -304,4 +329,5 @@
     else { renderBar("Tools_List", globalNav("tools")); set("tool-grid", toolCards()); var d = $("detail"); if (d) d.hidden = true; }
   }
   renderFoot();
+  setupGlobalShortcuts();
 })();
