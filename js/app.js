@@ -126,8 +126,15 @@
   /* ---------- トップページ ---------- */
   function renderHome() {
     var unity = (typeof SKILLS !== "undefined" ? SKILLS : []).filter(function (s) { return s.name === "Unity"; })[0];
-    set("hero-who", esc(SITE.name) + "　<span>" + esc(SITE.role) + "志望　／　" +
-      (SITE.schoolUrl ? '<a href="' + esc(SITE.schoolUrl) + '" target="_blank" rel="noopener">' + esc(SITE.school) + "</a>" : esc(SITE.school)) + "</span>");
+    // Keep the name, role and full school name as separate wrapping units.
+    // The school moves to the next row intact instead of breaking mid-name.
+    var schoolName = SITE.schoolUrl
+      ? '<a href="' + esc(SITE.schoolUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(SITE.school) + "</a>"
+      : esc(SITE.school);
+    set("hero-who",
+      '<strong class="hero-who-name">' + esc(SITE.name) + "</strong>" +
+      '<span class="hero-who-role">' + esc(SITE.role) + "志望</span>" +
+      '<span class="hero-who-school">' + schoolName + "</span>");
     set("stats",
       "<div><dt>PROGRAM</dt><dd>" + WORKS.length + "</dd></div>" +
       "<div><dt>TOOLS &amp; AI</dt><dd>" + AI.length + "</dd></div>" +
